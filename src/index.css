@@ -16,8 +16,15 @@
     width: 100%;
   }
 
+  @font-face {
+    font-family: 'Avant Garde Book BT';
+    /* font-style: normal;
+    font-weight: normal; */
+    src: local('Avant Garde Book BT'), url('assets/font/AVGARDN_2.woff') format('woff');
+    }
+
   :root {
-    font-family: "Nirmala UI", Inter, system-ui, sans-serif;
+    font-family: "Avant Garde Book BT", Inter, system-ui, sans-serif;
     line-height: 1.5;
     font-synthesis: none;
     text-rendering: optimizeLegibility;
