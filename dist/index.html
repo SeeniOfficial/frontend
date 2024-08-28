@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="manifest" href="manifest.json" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Seeni</title>
+    <script type="module" crossorigin src="/assets/index-B3_ohkVu.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-CrBTr19S.css">
+  </head>
+  <body>
+    <div id="root" className="h-screen flex justify-center place-items-center font-bold text-9xl text-center">
+        Seeni Official
+    </div>
+  </body>
+  <script>
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js', {scope: '/'})
+          .then (function (registration) {
+            console.log('Service Worker Registered Successfully!');
+        })
+        navigator.serviceWorker.ready.then(function(registration) {
+            console.log('Service Worker Ready!');
+        });
+        })
+    }
+</script>
+</html>
