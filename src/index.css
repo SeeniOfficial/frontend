@@ -1,8 +1,12 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import url('https://fonts.cdnfonts.com/css/avantgarde-bk-bt-2');
+
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
 
 @layer base {
+
   * {
     box-sizing: border-box;
   }
@@ -17,50 +21,18 @@
   }
 
   @font-face {
-    font-family: 'Avant Garde Book BT';
-    /* font-style: normal;
-    font-weight: normal; */
-    src: local('Avant Garde Book BT'), url('assets/font/AVGARDN_2.woff') format('woff');
+    font-family: 'AvantGarde Bk BT', sans-serif;
+    src: url('https://fonts.cdnfonts.com/css/avantgarde-bk-bt-2');
     }
 
   :root {
-    font-family: "Avant Garde Book BT", Inter, system-ui, sans-serif;
+    font-family: "AvantGarde Bk BT", Inter, system-ui, sans-serif;
     line-height: 1.5;
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;
-  }
-
-  @media (prefers-color-scheme: light) {
-    :root {
-      color: #213547;
-      /* background-color: #ffffff; */
-    }
-
-    a:hover {
-      color: #747bff;
-    }
-
-    button {
-      background-color: #f9f9f9;
-    }
-  }
-
-  @media (prefers-color-scheme: dark) {
-    :root {
-      color: #213547;
-      /* background-color: #9e1414; */
-    }
-
-    a:hover {
-      color: #747bff;
-    }
-
-    button {
-      background-color: #f9f9f9;
-    }
   }
 
   .fadeIn {
@@ -92,4 +64,5 @@
       transform: translate(-20px, 0);
     }
   }
+  
 }
