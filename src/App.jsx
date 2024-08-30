@@ -14,15 +14,9 @@ function App() {
 
   return (
     <div
-      className={transitionStage}
-      onAnimationEnd={() => {
-        if (transitionStage === "fadeOut") {
-          setDisplayLocation(location);
-          setTransistionStage("fadeIn");
-        }
-      }}
+      className
     >
-      <AppRoutes displayLocation={displayLocation} />
+      <AppRoutes />
     </div>
     )
 }
