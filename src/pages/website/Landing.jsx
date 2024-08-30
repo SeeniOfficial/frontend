@@ -11,7 +11,7 @@ import { Hero } from '../../components/Hero';
 export const Landing = () => {
   return (
     <Layout>
-      <div className="bg-whyte dark:bg-black flex flex-col gap-0.5 w-full inset-0">
+      <div className="bg-whyte dark:bg-drkprimary flex flex-col gap-0.5 w-full inset-0">
       <Header/>
       <Hero />
       <Features />
