@@ -13,7 +13,15 @@ module. exports = {
         error: "#FF0000",
         whyte: "#F2F2F2",
       },
+      transitionProperty: {
+        'opacity': 'opacity',
+      }
     },
+  },
+  variant: {
+    extend: {
+      opacity: ['responsive', 'hover', 'focus', 'group-hover'],
+    }
   },
   plugins: [],
 };

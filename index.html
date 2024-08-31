@@ -11,9 +11,9 @@
     <div id="root" className="h-screen flex justify-center place-items-center font-bold text-9xl text-center">
         Seeni Official
     </div>
-    <script type="module" src="/src/main.jsx"></script>
   </body>
-  <script>
+  <script type="module" src="/src/main.jsx"></script>
+  <script type="text/javascript">
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
         navigator.serviceWorker.register('sw.js', {scope: '/'})
@@ -25,5 +25,6 @@
         });
         })
     }
+  </script>
 </script>
 </html>
