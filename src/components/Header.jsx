@@ -7,7 +7,7 @@ import { Button } from "./Button";
 export const Header = () => {
 
   return (
-    <div className="bg-white dark:bg-drkprimary py-6 flex justify-between items-center px-10">
+    <div className="bg-white dark:bg-drkprimary py-6 flex justify-between items-center px-12 md:px-20">
       <div className="">
      <img src={logo} alt="seeni logo" />
       </div>
