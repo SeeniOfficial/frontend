@@ -15,7 +15,7 @@ export const Button = ({
       type={type}
       whileTap={{ scale: 0.9 }}
       onClick={click}
-      className={`${btnStyles} flex border border-primary justify-center relative px-4 py-3 rounded-lg`}
+      className={`${btnStyles} flex border border-primary justify-center relative`}
       disabled={disable}
     >
       <div className={`${btnLabelStyles} text-center`}>{label}</div>
