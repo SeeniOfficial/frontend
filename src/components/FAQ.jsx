@@ -6,7 +6,7 @@ export const FAQ = () => {
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <section className="py-10 px-8 md:px-24 bg-white w-full">
+    <section className="py-10 px-8 md:px-24 bg-white w-full text-sm">
       <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center">Frequently Asked Questions</h2>
       <div className="faq-items flex flex-col gap-4">
         {faqs.map((faq, i) => (
