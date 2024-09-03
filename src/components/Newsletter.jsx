@@ -10,8 +10,7 @@ export const Newsletter = () => {
         <p className="text-xs md:text-sm">Get updates and latest information about our services.</p>
         <form className="flex flex-col items-center md:flex-row gap-2 w-full md:w-2/3 mx-auto mt-4">
           <Input type="email" placeholder="Email Address" className="w-full" required={true} />
-          <Button label="Subscribe" btnStyles="bg-primary text-white font-bold w-full md:w-1/3 h-fit mt-2 md:mt-0 px-4 py-3 border border-primary rounded-lg
- px-4 py-2 rounded-lg" btnLabelStyles="mx-auto" />
+          <Button label="Subscribe" btnStyles="bg-primary text-white font-bold w-full md:w-1/3 h-fit mt-2 md:mt-0 px-4 py-2 border border-primary rounded-lg" btnLabelStyles="mx-auto" />
         </form>
       </div>
     </section>

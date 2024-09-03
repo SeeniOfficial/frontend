@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/solid';
 
-const Input = ({ 
+export const Input = ({ 
   type = 'text', 
   placeholder, 
   icon: Icon, 
@@ -37,7 +37,7 @@ const Input = ({
           value={value}
           onChange={onChange}
           required={required}
-          className={`block w-full rounded-lg p-3 shadow-sm ring-1 ring-inset ring-whyte focus:ring-2 focus:ring-inset focus:ring-whyte border-4 border-primary/20 outline-whyte sm:text-sm sm:leading-6 ${
+          className={`block w-full rounded-lg p-2 shadow-sm ring-1 ring-inset ring-whyte focus:ring-2 focus:ring-inset focus:ring-whyte border-4 border-primary/20 outline-whyte sm:text-sm sm:leading-6 ${
             Icon ? 'pl-10' : 'pl-3'
           } ${type === 'password' ? 'pr-10' : 'pr-3'}`}
           placeholder={placeholder}
@@ -63,5 +63,3 @@ const Input = ({
     </div>
   );
 };
-
-export default Input;
