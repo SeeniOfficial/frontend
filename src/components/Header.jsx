@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { toogleAppTheme } from "../hooks/toogleAppTheme";
+// import { toogleAppTheme } from "../hooks/toogleAppTheme";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/logo-primary.png";
 import { Button } from "./Button";
 
 export const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   const menuVariants = {
     closed: {
@@ -114,11 +115,13 @@ export const Header = () => {
                   label="Log In"
                   btnStyles="w-2/3 px-4 py-2 rounded-lg text-primary"
                   btnLabelStyles="mx-auto"
+                  click={() => navigate("/sign-in")}
                 />
                 <Button
                   label="Get Started"
                   btnStyles="w-2/3 px-4 py-2 rounded-lg bg-primary text-white"
                   btnLabelStyles="mx-auto"
+                  click={() => navigate("/sign-up")}
                 />
               </div>
             </div>
@@ -151,11 +154,13 @@ export const Header = () => {
             label="Log In"
             btnStyles="w-1/2  px-4 py-2 rounded-lg px-4 py-2 rounded-lg text-primary"
             btnLabelStyles="mx-auto"
+            click={() => navigate("/sign-in")}
           />
           <Button
             label="Get Started"
             btnStyles="w-1/2  px-4 py-2 rounded-lg px-4 py-2 rounded-lg bg-primary text-white"
             btnLabelStyles="mx-auto"
+            click={() => navigate("/sign-up")}
           />
         </div>
       </div>
