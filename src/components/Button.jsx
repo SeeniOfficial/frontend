@@ -15,11 +15,11 @@ export const Button = ({
       type={type}
       whileTap={{ scale: 0.9 }}
       onClick={click}
-      className={`${btnStyles} flex border border-primary justify-center relative`}
+      className={`${btnStyles} flex border border-primary items-center justify-center place-items-center`}
       disabled={disable}
     >
-      <div className={`${btnLabelStyles} text-center`}>{label}</div>
       {children}
+      <div className={`${btnLabelStyles} text-center my-auto`}>{label}</div>
     </motion.button>
   );
 };
