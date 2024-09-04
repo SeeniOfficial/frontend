@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { PublicLayout } from "../../components/PublicLayout";
 import logo from "../../assets/logo-primary.png";
-import Input from "../../components/Input";
+import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
 import google from "../../assets/google.png";
 import fb from "../../assets/facebook.png";
