@@ -5,6 +5,7 @@ import slide1 from "../assets/slide1.png";
 import slide2 from "../assets/slide2.png";
 import slide3 from "../assets/slide3.png";
 import slide4 from "../assets/slide4.png";
+import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
 
 const images = [slide1, slide2, slide3, slide4];
 
@@ -116,7 +117,7 @@ export const HeroSlider = () => {
           className="text-white rounded-full p-2 bg-black/50 hover:bg-black/75"
           onClick={() => paginate(-1)}
         >
-          ←
+          <FaAngleLeft />
         </button>
       </div>
       {/* Right Arrow */}
@@ -125,7 +126,7 @@ export const HeroSlider = () => {
           className="text-white rounded-full p-2 bg-black/50 hover:bg-black/75"
           onClick={() => paginate(1)}
         >
-          →
+         <FaAngleRight />
         </button>
       </div>
       {/* Dots */}

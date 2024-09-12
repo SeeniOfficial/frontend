@@ -11,6 +11,8 @@ import { FaCamera, FaCompass, FaTrophy } from "react-icons/fa";
 import { MdCookie, MdFavorite } from "react-icons/md";
 import { PiBookOpenFill } from "react-icons/pi";
 import { BiSolidCategoryAlt } from "react-icons/bi";
+import { FiSearch } from "react-icons/fi";
+import { Input } from "../../components/Input";
 
 const categories = [
   { icon: <LuUtensils />, name: "Restaurants" },
@@ -54,8 +56,8 @@ export const ExplorePage = () => {
 
   return (
     <PublicLayout>
-      <div className="bg-whyte w-full mx-auto px-12 py-6 md:py-12 md:px-32">
-        <div className="flex justify-between items-center font-bold gap-4 md:gap-10 text-xs md:text-md overflow-auto scrollbar-hide">
+      <div className="bg-whyte w-full mx-auto px-12 py-6 md:px-32">
+        <div className="flex justify-between items-center font-bold gap-4 md:gap-10 text-xs md:text-md overflow-hidden scrollbar-hide">
           <div
             className={`cursor-pointer flex items-center gap-1 ${
               activeTab === "explore" ? "text-primary" : "text-gray-800"
@@ -94,12 +96,13 @@ export const ExplorePage = () => {
             Rankings
           </div>
           <div
-            className={`cursor-pointer flex items-center gap-1 ${
-              activeTab === "search" ? "text-primary" : "text-gray-800"
+            className={`cursor-pointer flex items-center gap-1 h-7 px-2 rounded-full bg-grey/20 w-72 border-2  border-grey/0 focus-within:border-2 focus-within:border-secondary ${
+              activeTab === "search" ? "" : "text-gray-800"
             }`}
             onClick={() => handleTabClick("search")}
           >
-            Search
+            <FiSearch className="text-secondary" />
+            <input type="search" name="search" placeholder="Search" className="bg-transparent outline-none w-full font-normal flex items-center align-middle" id="" />
           </div>
         </div>
 

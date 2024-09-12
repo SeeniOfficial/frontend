@@ -37,7 +37,7 @@ export const Header = () => {
 
   return (
     <div className="bg-white dark:bg-drkprimary py-4 md:py-6 flex justify-between items-center px-4 md:px-20">
-      <div className="">
+      <div className="cursor-pointer" onClick={() => navigate('/')}>
         <img src={logo} alt="seeni logo" className="h-8 md:h-auto" />
       </div>
       <div className="md:hidden flex items-center">
@@ -152,13 +152,13 @@ export const Header = () => {
         <div className="flex flex-row items-center w-1/3 gap-4 font-bold">
           <Button
             label="Log In"
-            btnStyles="w-1/2  px-4 py-2 rounded-lg px-4 py-2 rounded-lg text-primary"
+            btnStyles="w-1/2 border border-primary p-2 rounded-lg text-primary"
             btnLabelStyles="mx-auto"
             click={() => navigate("/sign-in")}
           />
           <Button
             label="Get Started"
-            btnStyles="w-1/2  px-4 py-2 rounded-lg px-4 py-2 rounded-lg bg-primary text-white"
+            btnStyles="w-1/2 rounded-lg bg-primary border border-primary p-2  text-white"
             btnLabelStyles="mx-auto"
             click={() => navigate("/sign-up")}
           />

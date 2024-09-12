@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { PublicLayout } from "../../components/PublicLayout";
 import logo from "../../assets/logo-primary.png";
 import { Input } from "../../components/Input";
@@ -10,30 +10,62 @@ import fb from "../../assets/facebook.png";
 import { usePasswordValidation } from "../../hooks/usePasswordValidation";
 import { useForm } from "../../hooks/useForm";
 import { useError } from "../../hooks/useError";
+import { authService } from "../../services/authService";
 
 export const SignUp = () => {
-    const { values, handleChange, resetForm } = useForm({
-        email: "",
-        password: "",
-        repeatPassword: "",
-      });
-      const { error, setError, clearError } = useError();
+  const navigate = useNavigate();
+  const { values, handleChange, resetForm, clearError } = useForm({
+    email: "",
+    password: "",
+    repeatPassword: "",
+  });
+  const { error, setError } = useError();
+  const [isLoading, setIsLoading] = useState(false);
+  const [success, setSuccess] = useState(false)
 
-      const passwordValidations = usePasswordValidation(values.password);
+  const passwordValidations = usePasswordValidation(values.password);
 
-      const handleSignUp = (e) => {
-        e.preventDefault();
-        
-        // Check if all password requirements are met
-        const allRequirementsMet = Object.values(passwordValidations).every(Boolean);
-        if (allRequirementsMet && values.password === values.repeatPassword) {
-          console.log("Sign up successful", values);
-          resetForm();
-          clearError();
-        } else {
-          setError("Please meet all password requirements and ensure passwords match");
-        }
-      };
+  const handleSignUp = async (e) => {
+    e.preventDefault();
+    console.log("Signing up")
+    clearError();
+
+    // Check if all password requirements are met
+    const allRequirementsMet =
+      Object.values(passwordValidations).every(Boolean);
+    if (allRequirementsMet && values.password === values.repeatPassword) {
+      // alert()
+      setIsLoading(true);
+      try {
+        const response = await authService.signUp({
+          email: values.email,
+          password: values.password,
+        });
+
+        // Assuming the API returns user data and a token
+        const { user, token } = response;
+
+        // Store the token in localStorage
+        localStorage.setItem("authToken", token);
+
+        // Update the auth store
+        // login(user);
+        setSuccess(true)
+
+        // Reset form and clear errors
+        resetForm();
+        navigate("/dashboard");
+      } catch (error) {
+        setError(error.message || "An error occurred during sign up");
+      } finally {
+        setIsLoading(false);
+      }
+    } else {
+      setError(
+        "Please meet all password requirements and ensure passwords match"
+      );
+    }
+  };
 
   return (
     <PublicLayout>
@@ -43,13 +75,13 @@ export const SignUp = () => {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
       >
-        <div className="w-full max-w-md bg-white rounded-lg shadow-md p-8">
-        <img src={logo} alt="Séeni" className="mx-auto mb-8 object-contain" />
-          <h2 className="text-2xl font-bold text-center text-primary mb-6">
+        <div className="w-full max-w-md bg-white md:rounded-lg shadow-md p-8">
+        {success && (<div className="absolute flex place-items-center text-center justify-center text-3xl text-primary h-full w-full inset-0 bg-black/80 z-10">Signup successful!</div>)}
+          <h2 className=" text-xl md:text-3xl font-bold text-center text-primary mb-8">
             Sign Up
           </h2>
           <form onSubmit={handleSignUp} className="flex flex-col gap-8">
-          {error && <div className="text-error text-xs -my-4">{error}</div>}
+            {error && <div className="text-error text-xs -my-4">{error}</div>}
             <Input
               type="email"
               name="email"
@@ -76,23 +108,48 @@ export const SignUp = () => {
             />
             <div className="space-y-2 text-sm">
               <p>Password must:</p>
-              <p className={passwordValidations.hasUpperCase ? "text-success" : "text-gray-600"}>
+              <p
+                className={
+                  passwordValidations.hasUpperCase
+                    ? "text-success"
+                    : "text-grey"
+                }
+              >
                 Contain an upper case
               </p>
-              <p className={passwordValidations.hasLowerCase ? "text-success" : "text-gray-600"}>
+              <p
+                className={
+                  passwordValidations.hasLowerCase
+                    ? "text-success"
+                    : "text-grey"
+                }
+              >
                 Contain a lower case
               </p>
-              <p className={passwordValidations.hasNumber ? "text-success" : "text-gray-600"}>
+              <p
+                className={
+                  passwordValidations.hasNumber
+                    ? "text-success"
+                    : "text-grey"
+                }
+              >
                 Contain a number
               </p>
-              <p className={passwordValidations.hasSpecialChar ? "text-success" : "text-gray-600"}>
+              <p
+                className={
+                  passwordValidations.hasSpecialChar
+                    ? "text-success"
+                    : "text-grey"
+                }
+              >
                 Contain a special character
               </p>
             </div>
             <Button
-              label="Sign Up"
+              label={isLoading ? "Signing Up..." : "Sign Up"}
               type="submit"
-              btnStyles="w-full bg-primary text-white p-2 rounded-lg font-bold"
+              btnStyles={`w-full p-2 rounded-lg font-bold ${isLoading ? 'bg-grey text-whyte animate-pulse' : 'bg-primary text-white'}`}
+              disable={isLoading}
             />
           </form>
           <p className="text-center mt-6">

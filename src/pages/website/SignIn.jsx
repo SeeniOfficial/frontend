@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { PublicLayout } from "../../components/PublicLayout";
 import logo from "../../assets/logo-primary.png";
 import { Input } from "../../components/Input";
@@ -9,22 +9,48 @@ import google from "../../assets/google.png";
 import fb from "../../assets/facebook.png";
 import { useForm } from "../../hooks/useForm";
 import { useError } from "../../hooks/useError";
+import { useAuthStore } from "../../store/authStore";
 
 export const SignIn = () => {
+  const navigate = useNavigate();
+  const { login } = useAuthStore();
   const { values, handleChange, resetForm } = useForm({
     email: '',
     password: '',
   });
   const { error, setError, clearError } = useError();
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!values.email || !values.password) {
-      setError("Please fill in all fields");
+      setError('email', "Please fill in all fields");
+      setError('password', "Please fill in all fields");
       return;
     }
-    else {
-      clearError();
+    clearError();
+    setIsLoading(true);
+    try {
+      const response = await authService.signIn(values);
+      
+      // Assuming the API returns user data and a token
+      const { user, token } = response;
+      
+      // Store the token in localStorage
+      localStorage.setItem('authToken', token);
+      
+      // Update the auth store
+      login(user);
+      
+      // Reset form
+      resetForm();
+      
+      // Redirect to a protected route (e.g., dashboard)
+      navigate('/dashboard');
+    } catch (error) {
+      setError('general', error.message || "An error occurred during sign in");
+    } finally {
+      setIsLoading(false);
     }
     console.log(values);
     // onSubmit(values);
@@ -38,9 +64,8 @@ export const SignIn = () => {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
       >
-        <div className="w-full max-w-md bg-white rounded-lg shadow-md p-8">
-          <img src={logo} alt="Séeni" className="mx-auto mb-8 object-contain" />
-          <h2 className="text-2xl font-bold text-center text-primary mb-6">
+        <div className="w-full max-w-md bg-white md:rounded-lg shadow-md p-8">
+          <h2 className="text-xl md:text-3xl font-bold text-center text-primary mb-8">
             Sign In
           </h2>
           <form onSubmit={handleSubmit} className="flex flex-col gap-8">
@@ -62,9 +87,10 @@ export const SignIn = () => {
               required
             />
             <Button
-              label="Sign In"
+              label={isLoading ? "Signing In..." : "Sign In"}
               type="submit"
               btnStyles="w-full bg-primary text-white p-2 rounded-lg font-bold"
+              disable={isLoading}
             />
           </form>
           <div className="mt-4 flex flex-col gap-8 text-center">

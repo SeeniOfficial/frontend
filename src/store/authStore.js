@@ -4,13 +4,14 @@ export const useAuthStore = create((set) => ({
   isAuthenticated: true,
   user: null,
   login: (userData) => set({ isAuthenticated: true, user: userData }),
-  logout: () => set({ isAuthenticated: false, user: null }),
+  logout: () => {
+    localStorage.removeItem('authToken');
+    set({ isAuthenticated: false, user: null });
+  },
   checkAuth: () => {
-    // Implement your authentication check logic here
-    // For example, checking if a valid token exists in localStorage
+    // Check if a valid token exists in localStorage
     const token = localStorage.getItem('authToken');
     if (token) {
-      // You might want to validate the token here
       set({ isAuthenticated: true });
       // Optionally fetch and set user data
     } else {
