@@ -12,6 +12,7 @@ module. exports = {
         success: "#00D600",
         error: "#FF0000",
         whyte: "#F2F2F2",
+        grey: '#00000066'
       },
       transitionProperty: {
         'opacity': 'opacity',

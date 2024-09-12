@@ -15,7 +15,7 @@ export const ProtectedRoute = ({ children }) => {
 
   return (
     <AppLayout>
-      <main className="flex-grow bg-whyte">{children}</main>
+      <main className="flex-grow bg-whyte h-screen scroll-smooth overflow-y-auto">{children}</main>
     </AppLayout>
   );
 };

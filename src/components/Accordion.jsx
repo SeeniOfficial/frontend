@@ -13,7 +13,7 @@ const Accordion = ({ i, expanded, setExpanded, question, answer }) => {
       >
         <h3 className="font-semibold">{question}</h3>
         <motion.div
-          animate={{ rotate: isOpen ? -90 : 0 }}
+          animate={{ rotate: isOpen ? -180 : 0 }}
           transition={{ duration: 1 }}
           className="bg-black rounded-full p-1"
         >
@@ -33,7 +33,7 @@ const Accordion = ({ i, expanded, setExpanded, question, answer }) => {
               collapsed: { opacity: 0, height: "auto" },
             }}
             transition={{ duration: 1}}
-            className="p-4 border-t-2"
+            className="py-4 border-t-2 mx-4"
           >
             <p>{answer}</p>
           </motion.section>

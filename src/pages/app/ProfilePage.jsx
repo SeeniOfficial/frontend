@@ -1,12 +1,83 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { color, motion } from "framer-motion";
 import upload from "../../assets/upload.svg";
 import { Button } from "../../components/Button";
+import { Card } from "../../components/Card";
+import { StarRating } from "../../components/StarRating";
+import location from "../../assets/location.png";
+import locate from "../../assets/location.svg";
+import setlocation from "../../assets/setlocation.svg";
+import delivery from "../../assets/delivery.png";
+import deliver from "../../assets/delivery.svg";
+import card from "../../assets/card.svg";
+import payment from "../../assets/payment.png";
+import { useNavigate } from "react-router-dom";
+
 
 export const ProfilePage = () => {
+  const profileCard = [
+    {
+      image: location,
+      color: "text-primary",
+      title: (
+        <div className="flex gap-2 items-center">
+          {" "}
+          <img src={locate} alt="" /> <span>Location Services</span>
+        </div>
+      ),
+      description: "Set up the location of your physical store and gain visibility",
+      footer:      <motion.button
+          className="font-semibold flex items-center gap-2"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={() => navigate('/app/set-location')}
+        >
+          <span><img className="w-4" src={setlocation} alt="set location" /></span>
+          <div className="border-b-[2.5px] border-primary">Set location</div>
+        </motion.button>
+    },
+    {
+      image: delivery,
+      color: "text-error/50",
+      title: (
+        <div className="flex gap-2 items-center">
+          {" "}
+          <img src={deliver} alt="" /> <span className="">Delivery Services</span>
+        </div>
+      ),
+      description: "Set up a delivery system for easy access  to paid goods for your customers",
+      footer:      <motion.button
+          className="font-semibold flex items-center gap-2"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          <span><img className="w-4" src={deliver} alt="delivery setting" /></span>
+          <div className="border-b-[2.5px] border-error/50">Delivery Settings</div>
+        </motion.button>
+    },
+    {
+      image: payment,
+      color: "text-secondary",
+      title: <div className="flex gap-2 items-center">
+      {" "}
+      <img src={card} alt="card" /> <span className="">Payment Services</span>
+    </div>
+  ,
+      description: "Set up easy payment methods for your customers to ensure secure transactions",
+      footer:      <motion.button
+          className="font-semibold flex items-center gap-2"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          <span><img className="w-4" src={card} alt="payment settings" /></span>
+          <div className="border-b-[2.5px] border-secondary">Payment Settings</div>
+        </motion.button>
+    },
+  ];
   const [bio, setBio] = useState(
     "I am a very interesting individual interested in the sales and purchase of items"
   );
+  const navigate = useNavigate()
 
   return (
     <motion.div
@@ -97,16 +168,37 @@ export const ProfilePage = () => {
           ></Button>
         </div>
       </div>
+      <div className="flex flex-col justify-center mx-auto text-center my-4">
+        <label htmlFor="star rating" className="text-xs font-bold text-primary">
+          Star Rating
+        </label>
+        <StarRating value={0} starColor="yellow" />
+      </div>
 
       {/* Bio */}
-      <div>
-        <h3 className="font-semibold mb-2">Bio</h3>
+      <div className="flex flex-col text-center mx-8">
+        <label className="">Bio</label>
         <textarea
-          className="w-full p-2 border rounded-md"
-          rows="4"
+          className="w-full md:w-1/3 p-2 border border-primary rounded-lg bg-transparent mx-auto outline-none"
+          rows="5"
           value={bio}
           onChange={(e) => setBio(e.target.value)}
         ></textarea>
+      </div>
+
+      <div className="flex flex-col md:flex-row mx-auto justify-center gap-10 px-8 w-full my-4 mb-12">
+        {profileCard.map((card, index) => (
+          <Card
+            cardStyles={`w-full ${card.color}`}
+            image={card.image}
+            title={card.title}
+            description={card.description}
+            roundedCorners={true}
+            padding={true}
+            className="max-w-md"
+            footer={card.footer}
+          />
+        ))}
       </div>
     </motion.div>
   );
