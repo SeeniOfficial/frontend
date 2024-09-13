@@ -8,6 +8,8 @@ import { ForgotPassword } from "../pages/website/ForgotPassword";
 import { ProtectedRoute } from "./ProtectedRoutes";
 import { SetLocation } from "../pages/app/SetLocation";
 import { ExplorePage } from "../pages/website/ExplorePage";
+import { EditProfile } from "../pages/app/EditProfile";
+import { EmailVerification } from "../pages/website/EmailVerification";
 
 export const AppRoutes = () => {
   return (
@@ -17,13 +19,14 @@ export const AppRoutes = () => {
           <Route path="/" element={<Landing />} />
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/verify-email" element={<EmailVerification />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/explore" element={<ExplorePage />} />
             <Route
-              path="/app/set-location"
+              path="/app/edit-profile"
               element={
                 <ProtectedRoute>
-                  <SetLocation />
+                  <EditProfile />
                 </ProtectedRoute>
               }
             />

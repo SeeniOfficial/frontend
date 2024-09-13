@@ -3,6 +3,7 @@ import { create } from 'zustand';
 export const useAuthStore = create((set) => ({
   isAuthenticated: true,
   user: null,
+  error: null,
   login: (userData) => set({ isAuthenticated: true, user: userData }),
   logout: () => {
     localStorage.removeItem('authToken');
@@ -18,6 +19,8 @@ export const useAuthStore = create((set) => ({
       set({ isAuthenticated: false, user: null });
     }
   },
+  setError: (error) => set({ error }),
+  clearError: () => set({ error: null }),
 }));
 
 

@@ -2,24 +2,22 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Link, useNavigate } from "react-router-dom";
 import { PublicLayout } from "../../components/PublicLayout";
-import logo from "../../assets/logo-primary.png";
 import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
 import google from "../../assets/google.png";
 import fb from "../../assets/facebook.png";
 import { useForm } from "../../hooks/useForm";
-import { useError } from "../../hooks/useError";
 import { useAuthStore } from "../../store/authStore";
+import { useAuth } from "../../hooks/useAuth";
 
 export const SignIn = () => {
   const navigate = useNavigate();
-  const { login } = useAuthStore();
+  const { login, error, setError, clearError } = useAuthStore();
   const { values, handleChange, resetForm } = useForm({
     email: '',
     password: '',
   });
-  const { error, setError, clearError } = useError();
-  const [isLoading, setIsLoading] = useState(false);
+  const { isLoading, signIn } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -29,31 +27,16 @@ export const SignIn = () => {
       return;
     }
     clearError();
-    setIsLoading(true);
     try {
-      const response = await authService.signIn(values);
-      
-      // Assuming the API returns user data and a token
-      const { user, token } = response;
-      
-      // Store the token in localStorage
-      localStorage.setItem('authToken', token);
-      
-      // Update the auth store
-      login(user);
-      
-      // Reset form
+      await signIn(values);
       resetForm();
-      
-      // Redirect to a protected route (e.g., dashboard)
-      navigate('/dashboard');
-    } catch (error) {
-      setError('general', error.message || "An error occurred during sign in");
-    } finally {
-      setIsLoading(false);
+      // navigate('/app/profile');
+    } catch (err) {
+      if (err.response.status === 403) {
+        setError(`Your email has not been verified. ${<Link className="text-secondary font-bold underline">Verify Email</Link>}`)
+      }
+      setError(err.response.data || "An error occurred during sign in");
     }
-    console.log(values);
-    // onSubmit(values);
   };
 
   return (
@@ -77,6 +60,7 @@ export const SignIn = () => {
               value={values.email}
               onChange={handleChange}
               required
+             disabled={isLoading}
             />
             <Input
               type="password"
@@ -85,11 +69,12 @@ export const SignIn = () => {
               value={values.password}
               onChange={handleChange}
               required
+             disabled={isLoading}
             />
             <Button
               label={isLoading ? "Signing In..." : "Sign In"}
               type="submit"
-              btnStyles="w-full bg-primary text-white p-2 rounded-lg font-bold"
+              btnStyles={`w-full ${isLoading ? 'bg-grey text-whyte animate-pulse' : 'bg-primary text-white'} p-2 rounded-lg font-bold`}
               disable={isLoading}
             />
           </form>
