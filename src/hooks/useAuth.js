@@ -14,7 +14,6 @@ export const useAuth = () => {
     try {
       const response = await authService.signUp(userData);
       console.log(response)
-      localStorage.setItem('authToken', response.token);
       return response;
     } catch (err) {
       console.log(err)

@@ -13,7 +13,7 @@ export const EmailVerification = () => {
     const verifyEmail = async () => {
       const params = new URLSearchParams(location.search);
       const token = params.get('token');
-      console.log(token)
+      console.log('Verification token:', token);
 
       if (!token) {
         setVerificationStatus('error');
@@ -21,7 +21,8 @@ export const EmailVerification = () => {
       }
 
       try {
-        await authService.verifyEmail(token);
+        const response = await authService.verifyEmail(token);
+        console.log('Verification response:', response);
         setVerificationStatus('success');
       } catch (error) {
         console.error('Email verification failed:', error);
