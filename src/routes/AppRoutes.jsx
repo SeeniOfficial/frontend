@@ -10,11 +10,24 @@ import { SetLocation } from "../pages/app/SetLocation";
 import { ExplorePage } from "../pages/website/ExplorePage";
 import { EditProfile } from "../pages/app/EditProfile";
 import { EmailVerification } from "../pages/website/EmailVerification";
+import { useAuthStore } from "../store/authStore";
+
+const AuthProvider = ({ children }) => {
+  const { checkAuth } = useAuthStore();
+  
+  useEffect(() => {
+    checkAuth();
+  }, [checkAuth]);
+
+  return children;
+};
+
 
 export const AppRoutes = () => {
   return (
     <>
       <Router>
+        <AuthProvider>
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/sign-in" element={<SignIn />} />
@@ -58,6 +71,7 @@ export const AppRoutes = () => {
             {/* Catch-all redirect to home */}
             <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
+        </AuthProvider>
       </Router>
     </>
   );
