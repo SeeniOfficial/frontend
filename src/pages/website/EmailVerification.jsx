@@ -1,33 +1,48 @@
-import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { PublicLayout } from '../../components/PublicLayout';
-import { authService } from '../../services/authService';
+import React, { useEffect, useState } from "react";
+import { useParams, useNavigate, Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { PublicLayout } from "../../components/PublicLayout";
+import { authService } from "../../services/authService";
 
 export const EmailVerification = () => {
-  const [verificationStatus, setVerificationStatus] = useState('verifying');
+  const [verificationStatus, setVerificationStatus] = useState("verifying");
   const { token } = useParams();
 
   useEffect(() => {
     const verifyEmail = async () => {
       if (!token) {
-        setVerificationStatus('error');
+        setVerificationStatus("error");
         return;
       }
 
       try {
         const response = await authService.verifyEmail(token);
-        console.log('Verification response:', response);
-        setVerificationStatus('success');
+        console.log("Verification response:", response);
+        setVerificationStatus("success");
       } catch (error) {
-        console.error('Email verification failed:', error);
-        setVerificationStatus('error');
+        console.error("Email verification failed:", error);
+        setVerificationStatus("error");
       }
     };
 
     verifyEmail();
   }, [token]);
 
+  const handleResendClick = () => {
+    setShowResendForm(true);
+  };
+
+  const handleResendSubmit = async (e) => {
+    e.preventDefault();
+    setResendStatus("sending");
+    try {
+      await authService.resendVerificationEmail(email);
+      setResendStatus("success");
+    } catch (error) {
+      console.error("Failed to resend verification email:", error);
+      setResendStatus("error");
+    }
+  };
 
   return (
     <PublicLayout>
@@ -41,12 +56,16 @@ export const EmailVerification = () => {
           <h2 className="text-xl md:text-3xl font-bold text-primary mb-8">
             Email Verification
           </h2>
-          {verificationStatus === 'verifying' && (
-            <p className='animate-pulse text-drkprimary'>Verifying your email...</p>
+          {verificationStatus === "verifying" && (
+            <p className="animate-pulse text-drkprimary">
+              Verifying your email...
+            </p>
           )}
-          {verificationStatus === 'success' && (
+          {verificationStatus === "success" && (
             <>
-              <p className="text-success mb-4">Your email has been successfully verified!</p>
+              <p className="text-success mb-4">
+                Your email has been successfully verified!
+              </p>
               <Link
                 to="/sign-in"
                 className="bg-primary text-white text-xs p-2 rounded-lg font-bold"
@@ -55,10 +74,50 @@ export const EmailVerification = () => {
               </Link>
             </>
           )}
-          {verificationStatus === 'error' && (
-            <p className="text-error">
-              There was an error verifying your email. Please try again or contact support.
-            </p>
+          {verificationStatus === "error" && (
+            <>
+              <p className="text-error mb-4">
+                There was an error verifying your email. Please try again or
+                contact support.
+              </p>
+              {!showResendForm && (
+                <button
+                  onClick={handleResendClick}
+                  className="text-primary underline"
+                >
+                  Resend verification email
+                </button>
+              )}
+              {showResendForm && (
+                <form onSubmit={handleResendSubmit} className="mt-4">
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Enter your email"
+                    required
+                    className="w-full p-2 border rounded mb-2"
+                  />
+                  <button
+                    type="submit"
+                    className="bg-primary text-white text-xs p-2 rounded-lg font-bold"
+                    disabled={resendStatus === "sending"}
+                  >
+                    {resendStatus === "sending" ? "Sending..." : "Resend"}
+                  </button>
+                  {resendStatus === "success" && (
+                    <p className="text-success mt-2">
+                      Verification email sent successfully!
+                    </p>
+                  )}
+                  {resendStatus === "error" && (
+                    <p className="text-error mt-2">
+                      Failed to send verification email. Please try again.
+                    </p>
+                  )}
+                </form>
+              )}
+            </>
           )}
         </div>
       </motion.div>
