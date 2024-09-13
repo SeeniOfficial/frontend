@@ -1,29 +1,29 @@
-const API_BASE_URL = 'https://api.example.com';
+import axios from 'axios';
+
+const API_BASE_URL = 'https://web-be-x07a.onrender.com';
+
+const axiosInstance = axios.create({
+  baseURL: API_BASE_URL,
+});
+
+axiosInstance.interceptors.request.use((config) => {
+  const token = localStorage.getItem('authToken');
+  if (token) {
+    config.headers['Authorization'] = `Bearer ${token}`;
+  }
+  return config;
+});
 
 export const api = {
   get: async (endpoint) => {
-    const response = await fetch(`${API_BASE_URL}${endpoint}`, {headers: getAuthHeaders(),});
-    if (!response.ok) throw new Error('Network response was not ok');
-    return response.json();
+    const response = await axiosInstance.get(endpoint);
+    return response.data;
   },
 
   post: async (endpoint, data) => {
-    const response = await fetch(`${API_BASE_URL}${endpoint}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        ...getAuthHeaders(),
-      },
-      body: JSON.stringify(data),
-    });
-    if (!response.ok) throw new Error('Network response was not ok');
-    return response.json();
+    const response = await axiosInstance.post(endpoint, data);
+    return response.data;
   },
 
   // Add other methods as needed (put, delete, etc.)
 };
-
-function getAuthHeaders() {
-  const token = localStorage.getItem('authToken');
-  return token ? { 'Authorization': `Bearer ${token}` } : {};
-}
