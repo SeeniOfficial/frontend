@@ -12,6 +12,7 @@ import deliver from "../../assets/delivery.svg";
 import card from "../../assets/card.svg";
 import payment from "../../assets/payment.png";
 import { useNavigate } from "react-router-dom";
+import { MdEdit } from "react-icons/md";
 
 
 export const ProfilePage = () => {
@@ -147,25 +148,13 @@ export const ProfilePage = () => {
           <Button
             label={
               <>
-                <div>
-                  <svg
-                    width="19"
-                    height="19"
-                    viewBox="0 0 19 19"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M0.5 15.25V19H4.25L15.31 7.94L11.56 4.19L0.5 15.25ZM18.91 4.34L15.16 0.589996L12.63 3.13L16.38 6.88L18.91 4.34Z"
-                      fill="#F2F2F2"
-                    />
-                  </svg>
-                </div>
+               <MdEdit />
                 <span>Edit Profile</span>
               </>
             }
-            btnLabelStyles="border border-primary bg-primary font-bold text-sm text-white p-3 rounded-lg"
-          ></Button>
+            btnLabelStyles="border border-primary bg-primary font-bold text-xs text-white p-2 flex items-center rounded-lg"
+            click={() => navigate('/app/edit-profile')}
+           />
         </div>
       </div>
       <div className="flex flex-col justify-center mx-auto text-center my-4">
@@ -178,12 +167,9 @@ export const ProfilePage = () => {
       {/* Bio */}
       <div className="flex flex-col text-center mx-8">
         <label className="">Bio</label>
-        <textarea
-          className="w-full md:w-1/3 p-2 border border-primary rounded-lg bg-transparent mx-auto outline-none"
-          rows="5"
-          value={bio}
-          onChange={(e) => setBio(e.target.value)}
-        ></textarea>
+        <div
+          className="w-full md:w-64 text-sm p-2 h-36 border text-left border-primary rounded-lg bg-transparent mx-auto"
+        >{bio}</div>
       </div>
 
       <div className="flex flex-col md:flex-row mx-auto justify-center gap-10 px-8 w-full my-4 mb-12">
