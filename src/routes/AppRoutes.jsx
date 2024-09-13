@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Routes, Route, BrowserRouter as Router, Navigate } from "react-router-dom";
 import { Landing } from "../pages/website/Landing";
 import { ProfilePage } from "../pages/app/ProfilePage";
