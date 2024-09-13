@@ -1,20 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { PublicLayout } from '../../components/PublicLayout';
 import { authService } from '../../services/authService';
 
 export const EmailVerification = () => {
   const [verificationStatus, setVerificationStatus] = useState('verifying');
-  const location = useLocation();
-  const navigate = useNavigate();
+  const { token } = useParams();
 
   useEffect(() => {
     const verifyEmail = async () => {
-      const params = new URLSearchParams(location.search);
-      const token = params.get('token');
-      console.log('Verification token:', token);
-
       if (!token) {
         setVerificationStatus('error');
         return;
@@ -31,11 +26,8 @@ export const EmailVerification = () => {
     };
 
     verifyEmail();
-  }, [location]);
+  }, [token]);
 
-  const handleContinue = () => {
-    navigate('/sign-in');
-  };
 
   return (
     <PublicLayout>
@@ -50,17 +42,17 @@ export const EmailVerification = () => {
             Email Verification
           </h2>
           {verificationStatus === 'verifying' && (
-            <p>Verifying your email...</p>
+            <p className='animate-pulse text-drkprimary'>Verifying your email...</p>
           )}
           {verificationStatus === 'success' && (
             <>
               <p className="text-success mb-4">Your email has been successfully verified!</p>
-              <button
-                onClick={handleContinue}
-                className="bg-primary text-white p-2 rounded-lg font-bold"
+              <Link
+                to="/sign-in"
+                className="bg-primary text-white text-xs p-2 rounded-lg font-bold"
               >
                 Continue to Sign In
-              </button>
+              </Link>
             </>
           )}
           {verificationStatus === 'error' && (
