@@ -16,7 +16,7 @@ export const EmailVerification = () => {
       }
       console.log(token)
       try {
-        await authService.verifyEmail(token);
+        const response = await api.get(`/api/auth/verify-email/${token}`);
         if (response.status === 200) {
         setVerificationStatus('success');
         } else {
