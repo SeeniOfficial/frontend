@@ -54,8 +54,7 @@ export const SignIn = () => {
     } finally {
       setIsLoading(false);
     }
-    console.log(values);
-    // onSubmit(values);
+    console.log(values, user);
   };
 
   return (

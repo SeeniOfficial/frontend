@@ -76,10 +76,11 @@ export const SignUp = () => {
         {success && (
           <div className="relative w-full max-w-md bg-white md:rounded-lg shadow-md p-8 text-error h-60 justify-center items-center text-center flex flex-col my-32">
             <p className="text-success text-xl md:text-3xl font-bold">Signup successful!</p>
-            <p className="text-sm mt-2">
+            <p className="text-sm my-2">
               Please check your email to verify your account. Click on the
               verification link to complete the process.
             </p>
+            <p className="my-2 text-sm">Didn't get a mail? <Link to="" className="underline font-bold">Resend link</Link></p>
           </div>
         )}
         {!success && (
