@@ -30,9 +30,9 @@ export const SignUp = () => {
   const passwordValidations = usePasswordValidation(values.password);
 
   const handleSignUp = async (e) => {
-    clearError();
     e.preventDefault();
     console.log("Signing up");
+    clearError();
 
     // Check if all password requirements are met
     const allRequirementsMet =
@@ -47,7 +47,7 @@ export const SignUp = () => {
           password: values.password,
           role: "user",
         });
-        console.log();
+        console.log(values);
         setSuccess(true);
         resetForm();
       } catch (err) {
