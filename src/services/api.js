@@ -15,8 +15,13 @@ axiosInstance.interceptors.request.use((config) => {
 });
 
 export const api = {
+<<<<<<< HEAD
   get: async (endpoint, params = {}) => {
     const response = await axiosInstance.get(endpoint, {params});
+=======
+  get: async (endpoint) => {
+    const response = await axiosInstance.get(endpoint);
+>>>>>>> parent of 63b30d1 (chore: verify email)
     return response.data;
   },
 
@@ -26,4 +31,4 @@ export const api = {
   },
 
   // Add other methods as needed (put, delete, etc.)
-};          
+};

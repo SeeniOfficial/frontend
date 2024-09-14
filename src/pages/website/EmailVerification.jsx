@@ -10,15 +10,18 @@ export const EmailVerification = () => {
 
   useEffect(() => {
     const verifyEmail = async () => {
-      // if (!token) {
-      //   setVerificationStatus('error');
-      //   return;
-      // }
+      const params = new URLSearchParams(location.search);
+      const token = params.get('token');
+      console.log(token)
+
+      if (!token) {
+        setVerificationStatus('error');
+        return;
+      }
 
       console.log(token)
       try {
-        const response = await authService.verifyEmail({token});
-        console.log('Verification response:', response);
+        await authService.verifyEmail(token);
         setVerificationStatus('success');
       } catch (error) {
         console.error('Email verification failed:', error);
