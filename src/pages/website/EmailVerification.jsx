@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { PublicLayout } from "../../components/PublicLayout";
 import { authService } from "../../services/authService";
 
 export const EmailVerification = () => {
   const [verificationStatus, setVerificationStatus] = useState("verifying");
-  const { token } = useParams();
+  const [showResendForm, setShowResendForm] = useState(false);
+  const [email, setEmail] = useState("");
+  const [resendStatus, setResendStatus] = useState("");
+  const [searchParams] = useSearchParams();
+  const token = searchParams.get("token");
 
   useEffect(() => {
     console.log(token)
