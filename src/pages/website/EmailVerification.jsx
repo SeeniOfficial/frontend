@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams} from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { PublicLayout } from '../../components/PublicLayout';
 import { authService } from '../../services/authService';
@@ -10,19 +10,18 @@ export const EmailVerification = () => {
 
   useEffect(() => {
     const verifyEmail = async () => {
-      const params = new URLSearchParams(location.search);
-      const token = params.get('token');
-      console.log(token)
-
       if (!token) {
         setVerificationStatus('error');
         return;
       }
-
       console.log(token)
       try {
         await authService.verifyEmail(token);
+        if (response.status === 200) {
         setVerificationStatus('success');
+        } else {
+          setVerificationStatus('error');
+        }
       } catch (error) {
         console.error('Email verification failed:', error);
         setVerificationStatus('error');

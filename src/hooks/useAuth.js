@@ -40,5 +40,5 @@ export const useAuth = () => {
 
   // Implement other auth methods (signUp, signOut, etc.)
 
-  return { isLoading, error, signIn };
+  return { isLoading, error, signIn, signUp };
 };
