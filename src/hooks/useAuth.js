@@ -46,6 +46,7 @@ export const useAuth = () => {
     try {
       const response = await authService.verifyEmail(token);
       console.log("Verification response:", response);
+      return(response)
     } catch (error) {
       console.error("Email verification failed:", error);
     } finally {
