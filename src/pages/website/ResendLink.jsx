@@ -32,11 +32,13 @@ export const ResendLink = () => {
 
       // Store the token in localStorage
       localStorage.setItem("authToken", token);
+      setSuccess(true)
       // Reset form
       resetForm();
     } catch (error) {
       setError(error.response.data.message || "An error occurred");
       console.log(error);
+      setSuccess(false)
     } finally {
       setIsLoading(false);
     }
