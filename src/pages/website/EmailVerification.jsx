@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { PublicLayout } from "../../components/PublicLayout";
 import { api } from "../../services/api";
 import { useAuth } from "../../hooks/useAuth";
+import { useAuthStore } from "../../store/authStore";
 
 export const EmailVerification = () => {
   const location = useLocation();
@@ -11,6 +12,7 @@ export const EmailVerification = () => {
   const [success, setSuccess] = useState(false);
   const { token } = useParams();
   const { verifyEmail, isLoading } = useAuth();
+  // const {error,setError} = useAuthStore()
 
   useEffect(async () => {
     
@@ -32,20 +34,21 @@ export const EmailVerification = () => {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}>
         {isLoading && (
-          <div className="text-center">
+          <div className="w-full max-w-md bg-white md:rounded-lg shadow-md p-8 text-center">
           <h1 className="text-xl font-bold">Verifying your email...</h1>
         </div>
         )}
         {!isLoading && success && (
-          <div className="flex items-center justify-center min-h-screen bg-green-100">
-            <h1 className="text-xl font-bold text-green-600">
+          <div className="w-full max-w-md md:rounded-lg shadow-md p-8 flex items-center justify-center min-h-screen bg-green-100">
+            <h1 className="text-xl font-bold text-success">
               Your email has been successfully verified!
             </h1>
+            <Link className="font-bold underline text-secondary" to="/sign=in">Go to Log in</Link>
           </div>
         )}
         {isLoading && !success && (
-          <div className="flex items-center justify-center min-h-screen bg-red-100">
-            <h1 className="text-xl font-bold text-red-600">
+          <div className="w-full max-w-md md:rounded-lg shadow-md p-8 flex items-center justify-center min-h-screen bg-red-100">
+            <h1 className="text-xl font-bold text-error">
               Email verification failed. Please try again.
             </h1>
           </div>
