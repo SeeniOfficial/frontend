@@ -9,16 +9,16 @@ export const useAuthStore = create((set) => ({
     localStorage.removeItem('authToken');
     set({ isAuthenticated: false, user: null });
   },
-  checkAuth: () => {
-    // Check if a valid token exists in localStorage
-    const token = localStorage.getItem('authToken');
-    if (token) {
-      set({ isAuthenticated: true });
-      // Optionally fetch and set user data
-    } else {
-      set({ isAuthenticated: false, user: null });
-    }
-  },
+  // checkAuth: () => {
+  //   // Check if a valid token exists in localStorage
+  //   const token = localStorage.getItem('authToken');
+  //   if (token) {
+  //     set({ isAuthenticated: true });
+  //     // Optionally fetch and set user data
+  //   } else {
+  //     set({ isAuthenticated: false, user: null });
+  //   }
+  // },
 }));
 
 

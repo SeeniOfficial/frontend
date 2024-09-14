@@ -1,70 +1,55 @@
 import React, { useEffect, useState } from 'react';
-import { useParams} from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { useLocation, useNavigate } from 'react-router-dom';
+// import { motion } from 'framer-motion';
 import { PublicLayout } from '../../components/PublicLayout';
-import { authService } from '../../services/authService';
+import { api } from '../../services/api';
+// import { authService } from '../../services/authService';
 
 export const EmailVerification = () => {
-  const [verificationStatus, setVerificationStatus] = useState('verifying');
-  const { token } = useParams();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [success, setSuccess] = useState(false)
 
   useEffect(() => {
-    const verifyEmail = async () => {
-      if (!token) {
-        setVerificationStatus('error');
-        return;
-      }
-      console.log(token)
-      try {
-        const response = await api.get(`/api/auth/verify-email/${token}`);
-        if (response.status === 200) {
-        setVerificationStatus('success');
-        } else {
-          setVerificationStatus('error');
-        }
-      } catch (error) {
-        console.error('Email verification failed:', error);
-        setVerificationStatus('error');
-      }
-    };
+    const query = new URLSearchParams(location.search);
+    const token = query.get('token');
 
-    verifyEmail();
-  }, [token]);
+    if (token) {
+      verifyEmail(token);
+    } else {
+      console.error("Token not found in the URL");
+    }
+  }, [location]);
+
+  const verifyEmail = async (token) => {
+    try {
+      const response = await api.get(`/api/auth/verify-email/${token}`);
+      console.log('Email verified:', response);
+      setSuccess(true)
+    } catch (error) {
+      console.error('Error verifying email:', error);
+      setSuccess(false)
+    }
+  };
 
 
   return (
     <PublicLayout>
-      <motion.div
-        className="flex flex-col items-center justify-center bg-whyte py-1 md:py-10"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-      >
-        <div className="w-full max-w-md bg-white md:rounded-lg shadow-md p-8 text-center">
-          <h2 className="text-xl md:text-3xl font-bold text-primary mb-8">
-            Email Verification
-          </h2>
-          {verificationStatus === 'verifying' && (
-            <p className='animate-pulse text-drkprimary'>Verifying your email...</p>
-          )}
-          {verificationStatus === 'success' && (
-            <>
-              <p className="text-success mb-4">Your email has been successfully verified!</p>
-              <Link
-                to="/sign-in"
-                className="bg-primary text-white text-xs p-2 rounded-lg font-bold"
-              >
-                Continue to Sign In
-              </Link>
-            </>
-          )}
-          {verificationStatus === 'error' && (
-            <p className="text-error">
-              There was an error verifying your email. Please try again or contact support.
-            </p>
-          )}
-        </div>
-      </motion.div>
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <div className="text-center">
+        <h1 className="text-xl font-bold">Verifying your email...</h1>
+      </div>
+      {success && (
+        <div className="flex items-center justify-center min-h-screen bg-green-100">
+        <h1 className="text-xl font-bold text-green-600">Your email has been successfully verified!</h1>
+      </div>
+      )}
+      {!success && (
+        <div className="flex items-center justify-center min-h-screen bg-red-100">
+        <h1 className="text-xl font-bold text-red-600">Email verification failed. Please try again.</h1>
+      </div>
+      )}
+    </div>
     </PublicLayout>
   );
 };

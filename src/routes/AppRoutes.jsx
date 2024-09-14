@@ -11,27 +11,27 @@ import { EditProfile } from "../pages/app/EditProfile";
 import { EmailVerification } from "../pages/website/EmailVerification";
 import { useAuthStore } from "../store/authStore";
 
-const AuthProvider = ({ children }) => {
-  const { checkAuth } = useAuthStore();
+// const AuthProvider = ({ children }) => {
+//   const { checkAuth } = useAuthStore();
   
-  useEffect(() => {
-    checkAuth();
-  }, [checkAuth]);
+//   useEffect(() => {
+//     checkAuth();
+//   }, [checkAuth]);
 
-  return children;
-};
+//   return children;
+// };
 
 
 export const AppRoutes = () => {
   return (
     <>
       <Router>
-        <AuthProvider>
+        {/* <AuthProvider> */}
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
-          <Route path="/verify-email/:token" element={<EmailVerification />} />
+          <Route path="/verify-email" element={<EmailVerification />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/explore" element={<ExplorePage />} />
             <Route
@@ -62,7 +62,7 @@ export const AppRoutes = () => {
             {/* Catch-all redirect to home */}
             <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
-        </AuthProvider>
+        {/* </AuthProvider> */}
       </Router>
     </>
   );
