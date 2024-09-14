@@ -7,7 +7,6 @@ import { SignUp } from "../pages/website/SignUp";
 import { ForgotPassword } from "../pages/website/ForgotPassword";
 import { ProtectedRoute } from "./ProtectedRoutes";
 import { ExplorePage } from "../pages/website/ExplorePage";
-<<<<<<< HEAD
 import { EditProfile } from "../pages/app/EditProfile";
 import { EmailVerification } from "../pages/website/EmailVerification";
 import { useAuthStore } from "../store/authStore";
@@ -22,8 +21,6 @@ const AuthProvider = ({ children }) => {
   return children;
 };
 
-=======
->>>>>>> parent of ff4842c (feat: working on email verification)
 
 export const AppRoutes = () => {
   return (
@@ -34,10 +31,6 @@ export const AppRoutes = () => {
           <Route path="/" element={<Landing />} />
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
-<<<<<<< HEAD
-          <Route path="/verify-email/:token" element={<EmailVerification />} />
-=======
->>>>>>> parent of ff4842c (feat: working on email verification)
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/explore" element={<ExplorePage />} />
             <Route
