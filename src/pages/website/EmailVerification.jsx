@@ -20,7 +20,7 @@ export const EmailVerification = () => {
     if (token) {
       setIsLoading(true);
       try {
-        const response = await verifyEmail(token);
+        await verifyEmail(token);
         setSuccess(true);
         console.log(response);
       } catch (err) {
@@ -56,9 +56,9 @@ export const EmailVerification = () => {
             <h1 className="text-xl font-bold text-success">
               Your email has been successfully verified!
             </h1>
-            <Link className="font-bold underline text-secondary" to="/sign-in">
-              Go to Log in
-            </Link>
+            <div className="font-bold underline text-xs text-secondary" onClick={() => navigate("/sign-in")}>
+              Go to Login
+            </div>
           </div>
         )}
         {!isLoading && !success && (
