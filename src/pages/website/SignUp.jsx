@@ -9,6 +9,7 @@ import fb from "../../assets/facebook.png";
 import { usePasswordValidation } from "../../hooks/usePasswordValidation";
 import { useForm } from "../../hooks/useForm";
 import { useAuth } from "../../hooks/useAuth";
+import { useError } from '../../hooks/useError';
 import { useAuthStore } from "../../store/authStore";
 
 export const SignUp = () => {
@@ -25,7 +26,7 @@ export const SignUp = () => {
   // const [isLoading, setIsLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const { signUp, isLoading, error: authError } = useAuth();
-  const { error, setError, clearError } = useAuthStore();
+  const { error, setError, clearError } = useError();
 
   const passwordValidations = usePasswordValidation(values.password);
 
