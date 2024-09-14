@@ -128,8 +128,8 @@
 // };
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { authService } from '../../services/authService';
 // import { useAuthStore } from './authStore';
-import authService from './authService';
 
 export const EmailVerification = () => {
   const location = useLocation();
