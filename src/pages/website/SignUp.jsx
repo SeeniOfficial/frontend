@@ -90,7 +90,7 @@ export const SignUp = () => {
               Sign Up
             </h2>
             <form onSubmit={handleSignUp} className="flex flex-col gap-8">
-              {error && <div className="text-error text-xs -my-4">{error}</div>}
+              {error && <div className="text-error text-xs -my-4" onFocus={() => focus()}>{error}</div>}
               <div className="flex flex-col md:flex-row gap-8 md:gap-4 w-full">
                 <Input
                   type="text"

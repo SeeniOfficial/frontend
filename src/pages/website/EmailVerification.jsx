@@ -9,6 +9,7 @@ export const EmailVerification = () => {
   const { token } = useParams();
 
   useEffect(() => {
+    console.log(token)
     const verifyEmail = async () => {
       if (!token) {
         setVerificationStatus("error");
