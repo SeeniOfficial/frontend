@@ -12,25 +12,21 @@ export const EmailVerification = () => {
   const [searchParams] = useSearchParams();
   const token = searchParams.get("token");
 
-  useEffect(() => {
+  useEffect( async () => {
     console.log(token)
-    const verifyEmail = async () => {
       if (!token) {
         setVerificationStatus("error");
         return;
       }
-
       try {
-        const response = await authService.verifyEmail(token);
-        console.log("Verification response:", response);
-        setVerificationStatus("success");
+        await verifyEmail({token}
+        )
+      setVerificationStatus("success");
       } catch (error) {
-        console.error("Email verification failed:", error);
-        setVerificationStatus("error");
+      setVerificationStatus("error");
+console.log(error)
       }
-    };
 
-    verifyEmail();
   }, [token]);
 
   const handleResendClick = () => {

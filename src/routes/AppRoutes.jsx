@@ -6,7 +6,6 @@ import { SignIn } from "../pages/website/SignIn";
 import { SignUp } from "../pages/website/SignUp";
 import { ForgotPassword } from "../pages/website/ForgotPassword";
 import { ProtectedRoute } from "./ProtectedRoutes";
-import { SetLocation } from "../pages/app/SetLocation";
 import { ExplorePage } from "../pages/website/ExplorePage";
 import { EditProfile } from "../pages/app/EditProfile";
 import { EmailVerification } from "../pages/website/EmailVerification";
