@@ -6,6 +6,7 @@ import { useForm } from "../../hooks/useForm";
 import { useError } from "../../hooks/useError";
 import { authService } from "../../services/authService";
 import { Input } from "../../components/Input";
+import { Button } from "../../components/Button";
 
 export const ResendLink = () => {
   const [success, setSuccess] = useState(false);
