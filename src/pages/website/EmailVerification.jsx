@@ -23,18 +23,15 @@ export const EmailVerification = () => {
         const response = await verifyEmail(token);
         setSuccess(true);
         console.log(response);
-      } catch (error) {
+      } catch (err) {
         setError(
-          error.response.data.message || "An error occurred during sign in"
+          err.response.data.message || "An error occurred during sign in"
         );
-        console.log(error);
+        console.log(err);
       setSuccess(false);
       } finally {
         setIsLoading(false);
       }
-    } else {
-      console.error("Token not found in the URL", error);
-      setSuccess(false);
     }
   }, [location]);
 
