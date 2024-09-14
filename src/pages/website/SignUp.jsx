@@ -50,7 +50,6 @@ export const SignUp = () => {
         console.log();
         setSuccess(true);
         resetForm();
-        // navigate("/dashboard");
       } catch (err) {
         // Error handling is now managed by the useAuth hook
         console.error("Sign up error:", err);
