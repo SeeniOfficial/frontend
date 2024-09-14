@@ -10,6 +10,7 @@ import fb from "../../assets/facebook.png";
 import { useForm } from "../../hooks/useForm";
 import { useError } from "../../hooks/useError";
 import { useAuthStore } from "../../store/authStore";
+import { authService } from "../../services/authService";
 
 export const SignIn = () => {
   const navigate = useNavigate();
@@ -48,7 +49,8 @@ export const SignIn = () => {
       // Redirect to a protected route (e.g., dashboard)
       navigate('/dashboard');
     } catch (error) {
-      setError('general', error.message || "An error occurred during sign in");
+      setError(error.response.data.message || "An error occurred during sign in");
+      console.log(error)
     } finally {
       setIsLoading(false);
     }
@@ -77,6 +79,7 @@ export const SignIn = () => {
               value={values.email}
               onChange={handleChange}
               required
+              disabled={isLoading}
             />
             <Input
               type="password"
@@ -85,17 +88,22 @@ export const SignIn = () => {
               value={values.password}
               onChange={handleChange}
               required
+              disabled={isLoading}
             />
             <Button
               label={isLoading ? "Signing In..." : "Sign In"}
               type="submit"
-              btnStyles="w-full bg-primary text-white p-2 rounded-lg font-bold"
+              btnStyles={`w-full p-2 rounded-lg font-bold ${
+                isLoading
+                  ? "bg-grey text-whyte animate-pulse"
+                  : "bg-primary text-white"
+              }`}
               disable={isLoading}
             />
           </form>
           <div className="mt-4 flex flex-col gap-8 text-center">
             <p>
-              Don&apos;t have an account?{" "}
+              Don't have an account?{" "}
               <Link to="/sign-up" className="text-primary font-bold">
                 Sign Up
               </Link>

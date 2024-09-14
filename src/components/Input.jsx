@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/solid';
+import { useAuthStore } from '../store/authStore';
+import { useAuth } from '../hooks/useAuth';
 
 export const Input = ({ 
   type = 'text', 
@@ -10,7 +12,8 @@ export const Input = ({
   value, 
   onChange, 
   required = false,
-  className
+  className,
+  disabled
 }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
@@ -37,12 +40,13 @@ export const Input = ({
           value={value}
           onChange={onChange}
           required={required}
-          className={`block w-full  ${type === 'search' ? 'py-1 rounded-full' : 'py-3 rounded-lg'} shadow-sm ring-1 ring-inset ring-whyte focus:ring-2 focus:ring-inset focus:ring-primary border-2 border-primary/50 outline-whyte sm:text-sm sm:leading-6 text-xs md:text-sm ${
+          className={`block w-full  ${type === 'search' ? 'py-1 rounded-full' : 'py-3 rounded-lg'} shadow-sm ring-1 ring-inset ring-whyte focus:ring-2 focus:ring-inset focus:ring-primary border-2 ${disabled === true ? 'border-grey': 'border-primary/50'} outline-whyte sm:text-sm sm:leading-6 text-xs md:text-sm ${
             Icon ? 'pl-10' : 'pl-3'
           } ${type === 'password' ? 'pr-10' : 'pr-3'}`}
           placeholder={placeholder}
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
+          disabled={disabled}
         />
         {type === 'password' && (
           <div className="absolute inset-y-0 right-0 pr-3 flex items-center">

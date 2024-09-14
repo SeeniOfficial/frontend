@@ -10,10 +10,8 @@ import { usePasswordValidation } from "../../hooks/usePasswordValidation";
 import { useForm } from "../../hooks/useForm";
 import { useAuth } from "../../hooks/useAuth";
 import { useError } from '../../hooks/useError';
-import { useAuthStore } from "../../store/authStore";
 
 export const SignUp = () => {
-  const navigate = useNavigate();
   const { values, handleChange, resetForm } = useForm({
     firstName: "",
     lastName: "",
