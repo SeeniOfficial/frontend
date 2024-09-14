@@ -28,6 +28,7 @@ export const EmailVerification = () => {
           error.response.data.message || "An error occurred during sign in"
         );
         console.log(error);
+      setSuccess(false);
       } finally {
         setIsLoading(false);
       }
@@ -45,13 +46,16 @@ export const EmailVerification = () => {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
       >
+        <h2 className="text-xl md:text-3xl font-bold text-center text-primary mb-8">
+            Email Verification
+          </h2>
         {isLoading && (
-          <div className="w-full max-w-md bg-white md:rounded-lg shadow-md p-8 text-center">
+          <div className="w-full text-center">
             <h1 className="text-xl font-bold">Verifying your email...</h1>
           </div>
         )}
         {!isLoading && success && (
-          <div className="w-full max-w-md md:rounded-lg shadow-md p-8 flex items-center justify-center min-h-screen bg-green-100">
+          <div className="w-full flex items-center justify-center bg-green-100">
             <h1 className="text-xl font-bold text-success">
               Your email has been successfully verified!
             </h1>
@@ -61,7 +65,7 @@ export const EmailVerification = () => {
           </div>
         )}
         {isLoading && !success && (
-          <div className="w-full max-w-md md:rounded-lg shadow-md p-8 flex items-center justify-center min-h-screen bg-red-100">
+          <div className="w-full flex items-center justify-center bg-red-100">
             <h1 className="text-xl font-bold text-error">
               Email verification failed. Please try again.
             </h1>
