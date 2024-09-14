@@ -38,7 +38,7 @@ export const EmailVerification = () => {
   return (
     <PublicLayout>
       <motion.div
-        className="relative w-full max-w-md bg-white md:rounded-lg shadow-md p-8 text-error h-60 justify-center items-center text-center flex flex-col my-32"
+        className="relative w-full max-w-md bg-white md:rounded-lg shadow-md p-8 text-error h-60 justify-center items-center text-center flex flex-col mx-auto my-32"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
@@ -52,17 +52,17 @@ export const EmailVerification = () => {
           </div>
         )}
         {!isLoading && success && (
-          <div className="w-full flex items-center justify-center bg-green-100">
+          <div className="w-full flex flex-col gap-8 items-center justify-center">
             <h1 className="text-xl font-bold text-success">
               Your email has been successfully verified!
             </h1>
-            <Link className="font-bold underline text-secondary" to="/sign=in">
+            <Link className="font-bold underline text-secondary" to="/sign-in">
               Go to Log in
             </Link>
           </div>
         )}
         {!isLoading && !success && (
-          <div className="w-full flex items-center justify-center bg-red-100">
+          <div className="w-full flex items-center justify-center">
             <h1 className="text-xl font-bold text-error">
               {error}. Please try again.
             </h1>
