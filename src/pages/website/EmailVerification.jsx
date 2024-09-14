@@ -10,13 +10,14 @@ export const EmailVerification = () => {
 
   useEffect(() => {
     const verifyEmail = async () => {
-      if (!token) {
-        setVerificationStatus('error');
-        return;
-      }
+      // if (!token) {
+      //   setVerificationStatus('error');
+      //   return;
+      // }
 
+      console.log(token)
       try {
-        const response = await authService.verifyEmail(token);
+        const response = await authService.verifyEmail({token});
         console.log('Verification response:', response);
         setVerificationStatus('success');
       } catch (error) {
