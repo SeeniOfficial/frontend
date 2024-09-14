@@ -39,7 +39,16 @@ export const useAuth = () => {
     }
   };
 
+  const verifyEmail = async (token) => {
+    try {
+      const response = await api.get(token);
+      console.log("Email verified:", response);
+    } catch (error) {
+      console.error("Error verifying email:", error);
+    }
+  };
+
   // Implement other auth methods (signUp, signOut, etc.)
 
-  return { isLoading, error, signIn, signUp };
+  return { isLoading, error, signIn, signUp, verifyEmail};
 };

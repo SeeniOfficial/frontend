@@ -47,7 +47,7 @@ export const SignIn = () => {
       resetForm();
       
       // Redirect to a protected route (e.g., dashboard)
-      navigate('/dashboard');
+      navigate('/app/profile');
     } catch (error) {
       setError(error.response.data.message || "An error occurred during sign in");
       console.log(error)

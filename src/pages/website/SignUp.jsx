@@ -68,32 +68,33 @@ export const SignUp = () => {
   return (
     <PublicLayout>
       <motion.div
-        className="flex flex-col items-center justify-center bg-whyte overflow-y-hidden py-1 md:py-10"
+        className="flex flex-col items-center justify-center bg-whyte py-1 md:py-10"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
       >
-        {success && (
-          <div className="relative w-full max-w-md bg-white md:rounded-lg shadow-md p-8 text-error font-bold h-60 justify-center items-center text-center text-xl flex">
-            <p>Signup successful!</p>
-            <p className="text-base mt-2">
+        {!success && (
+          <div className="relative w-full max-w-md bg-white md:rounded-lg shadow-md p-8 text-error h-60 justify-center items-center text-center flex flex-col my-32">
+            <p className="text-success text-xl md:text-3xl font-bold">Signup successful!</p>
+            <p className="text-sm mt-2">
               Please check your email to verify your account. Click on the
               verification link to complete the process.
             </p>
           </div>
         )}
-        {!success && (
+        {success && (
           <div className="relative w-full max-w-md bg-white md:rounded-lg shadow-md p-8">
             <h2 className=" text-xl md:text-3xl font-bold text-center text-primary mb-8">
               Sign Up
             </h2>
             <form onSubmit={handleSignUp} className="flex flex-col gap-8">
               {error && <div className="text-error text-xs -my-4" onFocus={() => focus()}>{error}</div>}
-              <div className="flex flex-col md:flex-row gap-8 md:gap-4 w-full">
+              <div className="flex flex-col md:flex-row justify-between items-center gap-8 md:gap-6 w-full">
                 <Input
                   type="text"
                   name="firstName"
                   placeholder="First Name"
+                  className="w-full"
                   value={values.firstName}
                   onChange={handleChange}
                   required
@@ -102,6 +103,7 @@ export const SignUp = () => {
                 <Input
                   type="text"
                   name="lastName"
+                  className="w-full"
                   placeholder="Last Name"
                   value={values.lastName}
                   onChange={handleChange}

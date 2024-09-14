@@ -9,18 +9,6 @@ import { ProtectedRoute } from "./ProtectedRoutes";
 import { ExplorePage } from "../pages/website/ExplorePage";
 import { EditProfile } from "../pages/app/EditProfile";
 import { EmailVerification } from "../pages/website/EmailVerification";
-// import { useAuthStore } from "../store/authStore";
-
-// const AuthProvider = ({ children }) => {
-//   const { checkAuth } = useAuthStore();
-  
-//   useEffect(() => {
-//     checkAuth();
-//   }, [checkAuth]);
-
-//   return children;
-// };
-
 
 export const AppRoutes = () => {
   return (
