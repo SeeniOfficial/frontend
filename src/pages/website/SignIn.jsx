@@ -80,7 +80,7 @@ export const SignIn = () => {
           </form>
           <div className="mt-4 flex flex-col gap-8 text-center">
             <p>
-              Don't have an account?{" "}
+              Don&apos;t have an account?{" "}
               <Link to="/sign-up" className="text-primary font-bold">
                 Sign Up
               </Link>
