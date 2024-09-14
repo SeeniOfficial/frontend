@@ -80,7 +80,7 @@ export const SignUp = () => {
               Please check your email to verify your account. Click on the
               verification link to complete the process.
             </p>
-            <p className="my-2 text-sm">Didn't get a mail? <Link to="" className="underline font-bold">Resend link</Link></p>
+            <p className="my-2 text-sm">Didn't get a mail? <Link to="/resend-verification" className="underline font-bold">Resend link</Link></p>
           </div>
         )}
         {!success && (
