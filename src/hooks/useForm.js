@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { useAuthStore } from '../store/authStore';
+import { useError } from './useError';
 
 export const useForm = (initialState = {}) => {
   const [values, setValues] = useState(initialState);
- const {clearError} = useAuthStore()
+  const {error, setError, clearError } = useError();
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -17,7 +17,8 @@ export const useForm = (initialState = {}) => {
 
   const resetForm = () => {
     setValues(initialState);
+    clearError();
   };
 
-  return { values, handleChange, resetForm };
+  return { values, handleChange, resetForm, error, setError, clearError };
 };

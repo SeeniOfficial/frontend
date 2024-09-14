@@ -14,6 +14,7 @@ export const useAuth = () => {
     try {
       const response = await authService.signUp(userData);
       console.log(response)
+      localStorage.setItem('authToken', response.token);
       return response;
     } catch (err) {
       console.log(err)
@@ -28,30 +29,17 @@ export const useAuth = () => {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await authService.signIn(credentials);
-      login(response.user);
-      localStorage.setItem('authToken', response.token);
-      return response.user;
+      const user = await authService.signIn(credentials);
+      // Handle successful sign-in (e.g., store user data, redirect)
+      return user;
     } catch (err) {
-      console.log(err)
-      setError(err);
-      throw err;
+      setError(err.message);
     } finally {
       setIsLoading(false);
     }
   };
 
-  const verifyEmail = async (token) => {
-    setIsLoading(true)
-    try {
-      const response = await authService.verifyEmail(token);
-      console.log("Verification response:", response);
-    } catch (error) {
-      console.error("Email verification failed:", error);
-    } finally {
-      setIsLoading(false)
-    }
-  }
+  // Implement other auth methods (signUp, signOut, etc.)
 
-  return { isLoading, error, signUp, signIn, verifyEmail };
+  return { isLoading, error, signIn, signUp };
 };

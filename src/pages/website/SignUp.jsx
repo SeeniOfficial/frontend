@@ -30,9 +30,9 @@ export const SignUp = () => {
   const passwordValidations = usePasswordValidation(values.password);
 
   const handleSignUp = async (e) => {
-    clearError();
     e.preventDefault();
     console.log("Signing up");
+    clearError();
 
     // Check if all password requirements are met
     const allRequirementsMet =
@@ -47,10 +47,9 @@ export const SignUp = () => {
           password: values.password,
           role: "user",
         });
-        console.log();
+        console.log(values);
         setSuccess(true);
         resetForm();
-        // navigate("/dashboard");
       } catch (err) {
         // Error handling is now managed by the useAuth hook
         console.error("Sign up error:", err);
