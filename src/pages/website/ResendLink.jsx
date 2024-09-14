@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { useForm } from "../../hooks/useForm";
 import { useError } from "../../hooks/useError";
 import { authService } from "../../services/authService";
+import { Input } from "../../components/Input";
 
 export const ResendLink = () => {
   const [success, setSuccess] = useState(false);
