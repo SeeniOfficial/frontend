@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { PublicLayout } from "../../components/PublicLayout";
 import { api } from "../../services/api";
@@ -61,10 +61,10 @@ export const EmailVerification = () => {
             </Link>
           </div>
         )}
-        {isLoading && !success && (
+        {!isLoading && !success && (
           <div className="w-full flex items-center justify-center bg-red-100">
             <h1 className="text-xl font-bold text-error">
-              Email verification failed. Please try again.
+              {error}. Please try again.
             </h1>
           </div>
         )}

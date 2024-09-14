@@ -43,8 +43,25 @@ export const useAuth = () => {
     try {
       const response = await authService.verifyEmail(token);
       console.log("Email verified:", response);
+      return response;
     } catch (error) {
       console.error("Error verifying email:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const resendVerificationLink = async (user) => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      const response = await authService.signIn(user);
+      // Handle successful sign-in (e.g., store user data, redirect)
+      return response;
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setIsLoading(false);
     }
   };
 
