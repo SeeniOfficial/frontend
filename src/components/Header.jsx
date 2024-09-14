@@ -113,7 +113,7 @@ export const Header = () => {
               <div className="flex flex-col w-full items-start gap-4 font-bold mt-4">
                 <Button
                   label="Log In"
-                  btnStyles="w-1/2 border border-primary p-2 rounded-lg text-primary"
+                  btnStyles="w-2/3 border border-primary p-2 rounded-lg text-primary"
                   btnLabelStyles="mx-auto"
                   click={() => navigate("/sign-in")}
                 />

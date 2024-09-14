@@ -73,7 +73,7 @@ export const SignUp = () => {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
       >
-        {!success && (
+        {success && (
           <div className="relative w-full max-w-md bg-white md:rounded-lg shadow-md p-8 text-error h-60 justify-center items-center text-center flex flex-col my-32">
             <p className="text-success text-xl md:text-3xl font-bold">Signup successful!</p>
             <p className="text-sm mt-2">
@@ -82,7 +82,7 @@ export const SignUp = () => {
             </p>
           </div>
         )}
-        {success && (
+        {!success && (
           <div className="relative w-full max-w-md bg-white md:rounded-lg shadow-md p-8">
             <h2 className=" text-xl md:text-3xl font-bold text-center text-primary mb-8">
               Sign Up
