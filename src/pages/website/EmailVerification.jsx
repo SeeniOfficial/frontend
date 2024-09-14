@@ -11,6 +11,7 @@ export const EmailVerification = () => {
   const [resendStatus, setResendStatus] = useState("");
   const [searchParams] = useSearchParams();
   const token = searchParams.get("token");
+  const { verifyEmail, isLoading, error: authError } = useAuth();
 
   useEffect( async () => {
     console.log(token)
