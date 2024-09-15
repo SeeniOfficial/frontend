@@ -16,23 +16,26 @@ export const EmailVerification = () => {
   const { verifyEmail } = useAuth();
   const { error, setError } = useError();
 
-  useEffect(async () => {
-    if (token) {
-      setIsLoading(true);
-      try {
-        await verifyEmail(token);
-        setSuccess(true);
-        console.log(response);
-      } catch (err) {
-        setError(
-          err.response.data.message || "An error occurred during sign in"
-        );
-        console.log(err);
-      setSuccess(false);
-      } finally {
-        setIsLoading(false);
+  useEffect(() => {
+    const apiCall = async () => {
+      if (token) {
+        setIsLoading(true);
+        try {
+          await verifyEmail(token);
+          setSuccess(true);
+        } catch (err) {
+          console.log(err);
+          setError(
+            err.response.data.message || "An error occurred during sign in"
+          );
+          console.log(err);
+          setSuccess(false);
+        } finally {
+          setIsLoading(false);
+        }
       }
-    }
+    };
+    apiCall();
   }, [location]);
 
   return (
@@ -44,8 +47,8 @@ export const EmailVerification = () => {
         transition={{ duration: 0.5 }}
       >
         <h2 className="text-xl md:text-3xl font-bold text-center text-primary mb-8">
-            Email Verification
-          </h2>
+          Email Verification
+        </h2>
         {isLoading && (
           <div className="w-full text-center">
             <h1 className="text-xl font-bold">Verifying your email...</h1>
@@ -56,7 +59,10 @@ export const EmailVerification = () => {
             <h1 className="text-xl font-bold text-success">
               Your email has been successfully verified!
             </h1>
-            <div className="font-bold underline text-xs text-secondary" onClick={() => navigate("/sign-in")}>
+            <div
+              className="font-bold underline text-xs text-secondary"
+              onClick={() => navigate("/sign-in")}
+            >
               Go to Login
             </div>
           </div>

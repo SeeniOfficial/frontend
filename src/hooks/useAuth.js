@@ -42,10 +42,11 @@ export const useAuth = () => {
   const verifyEmail = async (token) => {
     try {
       const response = await authService.verifyEmail(token);
-      console.log("Email verified:", response);
+      // console.log("Email verified:", response);
       return response;
     } catch (error) {
-      console.error("Error verifying email:", error);
+      throw error
+      // console.error("Error verifying email:", error);
     } finally {
       setIsLoading(false);
     }
