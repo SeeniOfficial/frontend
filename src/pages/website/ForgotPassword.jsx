@@ -46,7 +46,7 @@ export const ForgotPassword = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="flex flex-col items-center justify-center bg-whyte py-1 md:py-10"
+      className="flex flex-col items-center justify-center bg-whyte h-60 py-1 md:py-10"
     >
       <div className="w-full max-w-md bg-white md:rounded-lg shadow-md p-8">
           <h2 className="text-xl md:text-3xl font-bold text-center text-primary mb-8">

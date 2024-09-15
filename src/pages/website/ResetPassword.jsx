@@ -52,7 +52,7 @@ export const ResetPassword = () => {
   return (
     <PublicLayout>
     <motion.div
-      className="flex flex-col items-center justify-center bg-whyte py-1 md:py-10"
+      className="flex flex-col items-center justify-center bg-whyte h-60 py-1 md:py-10"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}

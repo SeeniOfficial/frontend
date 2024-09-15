@@ -10,7 +10,7 @@ export const AppLayout = ({ children }) => {
 
   return (
     <div className="min-h-screen bg-gray-100">
-      <AppHeader toggleSidebar={toggleSidebar} />
+      <AppHeader toggleSidebar={toggleSidebar} sideBarOpen={isSidebarOpen}/>
       <div className="flex">
         <Sidebar isOpen={isSidebarOpen} setIsOpen={setIsSidebarOpen} />
         {children}

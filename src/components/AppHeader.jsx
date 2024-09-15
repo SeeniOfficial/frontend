@@ -1,12 +1,13 @@
 import React from "react";
 import { Button } from "./Button";
+import { motion, AnimatePresence } from "framer-motion";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/logo-primary.png";
 import { Avatar } from "./Avatar";
 
-export const AppHeader = ({ toggleSidebar, user }) => {
-  const navigate = useNavigate()
-  return(
+export const AppHeader = ({ toggleSidebar, user, sideBarOpen }) => {
+  const navigate = useNavigate();
+  return (
     <header className="bg-white mb-0.5">
       <div className="px-4 md:px-12 py-4 flex justify-between items-center">
         <div className="flex items-center">
@@ -19,30 +20,47 @@ export const AppHeader = ({ toggleSidebar, user }) => {
           <Button
             label="Log Out"
             btnStyles="bg-error text-white px-4 py-2 rounded-lg"
-            click={() => navigate('/')}
+            click={() => navigate("/")}
           />
-          <Button
-            label={
+          <motion.button
+            onClick={toggleSidebar}
+            className="text-primary md:hidden"
+            animate={sideBarOpen ? "open" : "closed"}
+          >
+            {sideBarOpen ? (
               <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+                className="size-6"
               >
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
+                  d="M6 18 18 6M6 6l12 12"
                 />
               </svg>
-            }
-            click={toggleSidebar}
-            btnStyles="md:hidden"
-          />
+            ) : (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+                className="size-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M3.75 9h16.5m-16.5 6.75h16.5"
+                />
+              </svg>
+            )}
+          </motion.button>
         </div>
       </div>
     </header>
-  )
+  );
 };

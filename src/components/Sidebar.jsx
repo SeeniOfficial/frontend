@@ -11,7 +11,7 @@ export const Sidebar = ({ isOpen, setIsOpen }) => {
 
   return (
     <>
-      <nav className="hidden md:flex md:flex-col gap-12 pt-16 pl-10 w-1/4 bg-white p-4">
+      <nav className="hidden md:flex md:flex-col gap-12 pt-10 pl-10 w-1/4 bg-white p-4">
         <DashboardLinks />
       </nav>
         <motion.nav 

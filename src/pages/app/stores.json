@@ -1,0 +1,794 @@
+[
+    {
+      "name": "Ibadan Mall",
+      "location": {
+        "address": "1 Old Bodija Road, Bodija",
+        "city": "Ibadan",
+        "state": "Oyo",
+        "zipcode": "200281"
+      },
+      "keywords": ["shopping", "retail", "fashion", "electronics"],
+      "products": [
+        {
+          "name": "Clothing",
+          "categories": ["Fashion", "Apparel"]
+        },
+        {
+          "name": "Smartphones",
+          "categories": ["Electronics", "Mobile Devices"]
+        },
+        {
+          "name": "Home Appliances",
+          "categories": ["Electronics", "Home"]
+        }
+      ],
+      "hours": {
+        "monday": "10:00 AM - 9:00 PM",
+        "tuesday": "10:00 AM - 9:00 PM",
+        "wednesday": "10:00 AM - 9:00 PM",
+        "thursday": "10:00 AM - 9:00 PM",
+        "friday": "10:00 AM - 9:00 PM",
+        "saturday": "10:00 AM - 9:00 PM",
+        "sunday": "12:00 PM - 6:00 PM"
+      }
+    },
+    {
+      "name": "Agbowo Bookshop",
+      "location": {
+        "address": "University of Ibadan Campus, Agbowo",
+        "city": "Ibadan",
+        "state": "Oyo",
+        "zipcode": "200284"
+      },
+      "keywords": ["books", "stationery", "academic"],
+      "products": [
+        {
+          "name": "Textbooks",
+          "categories": ["Books", "Education"]
+        },
+        {
+          "name": "Notebooks",
+          "categories": ["Stationery", "Office Supplies"]
+        },
+        {
+          "name": "Pens",
+          "categories": ["Stationery", "Writing Instruments"]
+        }
+      ],
+      "hours": {
+        "monday": "8:00 AM - 5:00 PM",
+        "tuesday": "8:00 AM - 5:00 PM",
+        "wednesday": "8:00 AM - 5:00 PM",
+        "thursday": "8:00 AM - 5:00 PM",
+        "friday": "8:00 AM - 5:00 PM",
+        "saturday": "9:00 AM - 2:00 PM",
+        "sunday": "Closed"
+      }
+    },
+    {
+      "name": "Ogbomoso Grocery Store",
+      "location": {
+        "address": "15 Ilorin Road, Ogbomoso",
+        "city": "Ogbomoso",
+        "state": "Oyo",
+        "zipcode": "210101"
+      },
+      "keywords": ["grocery", "food", "household"],
+      "products": [
+        {
+          "name": "Fresh Produce",
+          "categories": ["Fruits", "Vegetables"]
+        },
+        {
+          "name": "Packaged Foods",
+          "categories": ["Snacks", "Beverages"]
+        },
+        {
+          "name": "Cleaning Supplies",
+          "categories": ["Household", "Cleaning"]
+        }
+      ],
+      "hours": {
+        "monday": "8:00 AM - 8:00 PM",
+        "tuesday": "8:00 AM - 8:00 PM",
+        "wednesday": "8:00 AM - 8:00 PM",
+        "thursday": "8:00 AM - 8:00 PM",
+        "friday": "8:00 AM - 8:00 PM",
+        "saturday": "8:00 AM - 8:00 PM",
+        "sunday": "9:00 AM - 6:00 PM"
+      }
+    },
+    {
+      "name": "Oyo Town Pharmacy",
+      "location": {
+        "address": "20 Akesan Road, Oyo",
+        "city": "Oyo",
+        "state": "Oyo",
+        "zipcode": "230271"
+      },
+      "keywords": ["pharmacy", "health", "medicine"],
+      "products": [
+        {
+          "name": "Prescription Drugs",
+          "categories": ["Pharmaceuticals", "Medicine"]
+        },
+        {
+          "name": "Over-the-Counter Medications",
+          "categories": ["Health", "Wellness"]
+        },
+        {
+          "name": "Vitamins and Supplements",
+          "categories": ["Health", "Nutrition"]
+        }
+      ],
+      "hours": {
+        "monday": "9:00 AM - 6:00 PM",
+        "tuesday": "9:00 AM - 6:00 PM",
+        "wednesday": "9:00 AM - 6:00 PM",
+        "thursday": "9:00 AM - 6:00 PM",
+        "friday": "9:00 AM - 6:00 PM",
+        "saturday": "9:00 AM - 3:00 PM",
+        "sunday": "Closed"
+      }
+    },
+    {
+      "name": "Saki Furniture Mart",
+      "location": {
+        "address": "5 Olubadan Road, Saki",
+        "city": "Saki",
+        "state": "Oyo",
+        "zipcode": "230281"
+      },
+      "keywords": ["furniture", "home decor", "interior design"],
+      "products": [
+        {
+          "name": "Living Room Furniture",
+          "categories": ["Furniture", "Home Decor"]
+        },
+        {
+          "name": "Bedroom Furniture",
+          "categories": ["Furniture", "Home Decor"]
+        },
+        {
+          "name": "Outdoor Furniture",
+          "categories": ["Furniture", "Outdoor"]
+        }
+      ],
+      "hours": {
+        "monday": "10:00 AM - 7:00 PM",
+        "tuesday": "10:00 AM - 7:00 PM",
+        "wednesday": "10:00 AM - 7:00 PM",
+        "thursday": "10:00 AM - 7:00 PM",
+        "friday": "10:00 AM - 7:00 PM",
+        "saturday": "10:00 AM - 7:00 PM",
+        "sunday": "12:00 PM - 5:00 PM"
+      }
+    },
+    {
+      "name": "Iseyin Market",
+      "location": {
+        "address": "Iseyin Main Market, Iseyin",
+        "city": "Iseyin",
+        "state": "Oyo",
+        "zipcode": "210105"
+      },
+      "keywords": ["market", "local produce", "crafts"],
+      "products": [
+        {
+          "name": "Fresh Vegetables",
+          "categories": ["Produce", "Vegetables"]
+        },
+        {
+          "name": "Handmade Baskets",
+          "categories": ["Crafts", "Home Decor"]
+        },
+        {
+          "name": "Traditional Clothing",
+          "categories": ["Fashion", "Cultural"]
+        }
+      ],
+      "hours": {
+        "monday": "7:00 AM - 6:00 PM",
+        "tuesday": "7:00 AM - 6:00 PM",
+        "wednesday": "7:00 AM - 6:00 PM",
+        "thursday": "7:00 AM - 6:00 PM",
+        "friday": "7:00 AM - 6:00 PM",
+        "saturday": "7:00 AM - 6:00 PM",
+        "sunday": "7:00 AM - 6:00 PM"
+      }
+    },
+    {
+      "name": "Okeho Supermarket",
+      "location": {
+        "address": "12 Oke-Ogun Road, Okeho",
+        "city": "Okeho",
+        "state": "Oyo",
+        "zipcode": "210281"
+      },
+      "keywords": ["supermarket", "groceries", "household items"],
+      "products": [
+        {
+          "name": "Canned Goods",
+          "categories": ["Grocery", "Packaged Foods"]
+        },
+        {
+          "name": "Toiletries",
+          "categories": ["Personal Care", "Household"]
+        },
+        {
+          "name": "Pet Supplies",
+          "categories": ["Pets", "Household"]
+        }
+      ],
+      "hours": {
+        "monday": "8:00 AM - 9:00 PM",
+        "tuesday": "8:00 AM - 9:00 PM",
+        "wednesday": "8:00 AM - 9:00 PM",
+        "thursday": "8:00 AM - 9:00 PM",
+        "friday": "8:00 AM - 9:00 PM",
+        "saturday": "8:00 AM - 9:00 PM",
+        "sunday": "9:00 AM - 6:00 PM"
+      }
+    },
+    {
+      "name": "Igboho Farmers Market",
+      "location": {
+        "address": "Igboho Main Market, Igboho",
+        "city": "Igboho",
+        "state": "Oyo",
+        "zipcode": "210271"
+      },
+      "keywords": ["farmers market", "local produce", "organic"],
+      "products": [
+        {
+          "name": "Fresh Fruits",
+          "categories": ["Produce", "Fruits"]
+        },
+        {
+          "name": "Organic Eggs",
+          "categories": ["Produce", "Organic"]
+        },
+        {
+          "name": "Honey",
+          "categories": ["Produce", "Natural"]
+        }
+      ],
+      "hours": {
+        "monday": "7:00 AM - 5:00 PM",
+        "tuesday": "7:00 AM - 5:00 PM",
+        "wednesday": "7:00 AM - 5:00 PM",
+        "thursday": "7:00 AM - 5:00 PM",
+        "friday": "7:00 AM - 5:00 PM",
+        "saturday": "7:00 AM - 5:00 PM",
+        "sunday": "7:00 AM - 5:00 PM"
+      }
+    },
+    {
+      "name": "Ona-Ara Bookstore",
+      "location": {
+        "address": "3 Iyana-Agbala Road, Ona-Ara",
+        "city": "Ona-Ara",
+        "state": "Oyo",
+        "zipcode": "200285"
+      },
+      "keywords": ["bookstore", "stationery", "educational supplies"],
+      "products": [
+        {
+          "name": "Fiction Books",
+          "categories": ["Books", "Literature"]
+        },
+        {
+          "name": "Art Supplies",
+          "categories": ["Stationery", "Crafts"]
+        },
+        {
+          "name": "School Bags",
+          "categories": ["Educational", "Accessories"]
+        }
+      ],
+      "hours": {
+        "monday": "9:00 AM - 6:00 PM",
+        "tuesday": "9:00 AM - 6:00 PM",
+        "wednesday": "9:00 AM - 6:00 PM",
+        "thursday": "9:00 AM - 6:00 PM",
+        "friday": "9:00 AM - 6:00 PM",
+        "saturday": "9:00 AM - 5:00 PM",
+        "sunday": "Closed"
+      }
+    },
+    {
+      "name": "Oyo Tech Store",
+      "location": {
+        "address": "8 Iwo Road, Oyo",
+        "city": "Oyo",
+        "state": "Oyo",
+        "zipcode": "230272"
+      },
+      "keywords": ["electronics", "gadgets", "computers"],
+      "products": [
+        {
+          "name": "Laptops",
+          "categories": ["Computers", "Electronics"]
+        },
+        {
+          "name": "Smartphones",
+          "categories": ["Mobile Devices", "Electronics"]
+        },
+        {
+          "name": "Gaming Consoles",
+          "categories": ["Electronics", "Entertainment"]
+        }
+      ],
+      "hours": {
+        "monday": "10:00 AM - 8:00 PM",
+        "tuesday": "10:00 AM - 8:00 PM",
+        "wednesday": "10:00 AM - 8:00 PM",
+        "thursday": "10:00 AM - 8:00 PM",
+        "friday": "10:00 AM - 8:00 PM",
+        "saturday": "10:00 AM - 8:00 PM",
+        "sunday": "12:00 PM - 6:00 PM"
+      }
+    },
+    {
+      "name": "Ibadan Boutique",
+      "location": {
+        "address": "25 Mokola Road, Ibadan",
+        "city": "Ibadan",
+        "state": "Oyo",
+        "zipcode": "200281"
+      },
+      "keywords": ["fashion", "clothing", "accessories"],
+      "products": [
+        {
+          "name": "Women's Clothing",
+          "categories": ["Fashion", "Apparel"]
+        },
+        {
+          "name": "Jewelry",
+          "categories": ["Accessories", "Fashion"]
+        },
+        {
+          "name": "Men's Footwear",
+          "categories": ["Fashion", "Shoes"]
+        }
+      ],
+      "hours": {
+        "monday": "10:00 AM - 8:00 PM",
+        "tuesday": "10:00 AM - 8:00 PM",
+        "wednesday": "10:00 AM - 8:00 PM",
+        "thursday": "10:00 AM - 8:00 PM",
+        "friday": "10:00 AM - 8:00 PM",
+        "saturday": "10:00 AM - 8:00 PM",
+        "sunday": "12:00 PM - 6:00 PM"
+      }
+    },
+    {
+      "name": "Oyo Art Gallery",
+      "location": {
+        "address": "6 Akesan Road, Oyo",
+        "city": "Oyo",
+        "state": "Oyo",
+        "zipcode": "230271"
+      },
+      "keywords": ["art", "paintings", "sculptures"],
+      "products": [
+        {
+          "name": "Paintings",
+          "categories": ["Art", "Visual Arts"]
+        },
+        {
+          "name": "Sculptures",
+          "categories": ["Art", "Crafts"]
+        },
+        {
+          "name": "Prints",
+          "categories": ["Art", "Collectibles"]
+        }
+      ],
+      "hours": {
+        "monday": "10:00 AM - 6:00 PM",
+        "tuesday": "10:00 AM - 6:00 PM",
+        "wednesday": "10:00 AM - 6:00 PM",
+        "thursday": "10:00 AM - 6:00 PM",
+        "friday": "10:00 AM - 6:00 PM",
+        "saturday": "10:00 AM - 6:00 PM",
+        "sunday": "12:00 PM - 5:00 PM"
+      }
+    },
+    {
+      "name": "Ibadan Music Store",
+      "location": {
+        "address": "18 Iwo Road, Ibadan",
+        "city": "Ibadan",
+        "state": "Oyo",
+        "zipcode": "200281"
+      },
+      "keywords": ["music", "instruments", "audio equipment"],
+      "products": [
+        {
+          "name":  "Guitars",
+          "categories": ["Musical Instruments", "Strings"]
+        },
+        {
+          "name": "Headphones",
+          "categories": ["Audio Equipment", "Accessories"]
+        },
+        {
+          "name": "Sheet Music",
+          "categories": ["Music", "Books"]
+        }
+      ],
+      "hours": {
+        "monday": "10:00 AM - 7:00 PM",
+        "tuesday": "10:00 AM - 7:00 PM",
+        "wednesday": "10:00 AM - 7:00 PM",
+        "thursday": "10:00 AM - 7:00 PM",
+        "friday": "10:00 AM - 7:00 PM",
+        "saturday": "10:00 AM - 7:00 PM",
+        "sunday": "12:00 PM - 5:00 PM"
+      }
+    },
+    {
+      "name": "Ogbomoso Sports Store",
+      "location": {
+        "address": "23 Ilorin Road, Ogbomoso",
+        "city": "Ogbomoso",
+        "state": "Oyo",
+        "zipcode": "210101"
+      },
+      "keywords": ["sports", "fitness", "outdoor gear"],
+      "products": [
+        {
+          "name": "Exercise Equipment",
+          "categories": ["Sports", "Fitness"]
+        },
+        {
+          "name": "Camping Gear",
+          "categories": ["Outdoor", "Adventure"]
+        },
+        {
+          "name": "Team Sports Apparel",
+          "categories": ["Sports", "Clothing"]
+        }
+      ],
+      "hours": {
+        "monday": "9:00 AM - 7:00 PM",
+        "tuesday": "9:00 AM - 7:00 PM",
+        "wednesday": "9:00 AM - 7:00 PM",
+        "thursday": "9:00 AM - 7:00 PM",
+        "friday": "9:00 AM - 7:00 PM",
+        "saturday": "9:00 AM - 7:00 PM",
+        "sunday": "11:00 AM - 5:00 PM"
+      }
+    },
+    {
+      "name": "Oyo Toy Store",
+      "location": {
+        "address": "10 Akesan Road, Oyo",
+        "city": "Oyo",
+        "state": "Oyo",
+        "zipcode": "230271"
+      },
+      "keywords": ["toys", "games", "children's products"],
+      "products": [
+        {
+          "name": "Plush Toys",
+          "categories": ["Toys", "Stuffed Animals"]
+        },
+        {
+          "name": "Board Games",
+          "categories": ["Games", "Family"]
+        },
+        {
+          "name": "Educational Toys",
+          "categories": ["Toys", "Learning"]
+        }
+      ],
+      "hours": {
+        "monday": "10:00 AM - 7:00 PM",
+        "tuesday": "10:00 AM - 7:00 PM",
+        "wednesday": "10:00 AM - 7:00 PM",
+        "thursday": "10:00 AM - 7:00 PM",
+        "friday": "10:00 AM - 7:00 PM",
+        "saturday": "10:00 AM - 7:00 PM",
+        "sunday": "12:00 PM - 6:00 PM"
+      }
+    },
+    {
+      "name": "Saki Flower Shop",
+      "location": {
+        "address": "2 Olubadan Road, Saki",
+        "city": "Saki",
+        "state": "Oyo",
+        "zipcode": "230281"
+      },
+      "keywords": ["flowers", "floral arrangements", "gifts"],
+      "products": [
+        {
+          "name": "Cut Flowers",
+          "categories": ["Floral", "Fresh"]
+        },
+        {
+          "name": "Potted Plants",
+          "categories": ["Plants", "Home Decor"]
+        },
+        {
+          "name": "Gift Baskets",
+          "categories": ["Gifts", "Occasions"]
+        }
+      ],
+      "hours": {
+        "monday": "9:00 AM - 6:00 PM",
+        "tuesday": "9:00 AM - 6:00 PM",
+        "wednesday": "9:00 AM - 6:00 PM",
+        "thursday": "9:00 AM - 6:00 PM",
+        "friday": "9:00 AM - 6:00 PM",
+        "saturday": "9:00 AM - 6:00 PM",
+        "sunday": "10:00 AM - 4:00 PM"
+      }
+    },
+    {
+      "name": "Ibadan Bike Shop",
+      "location": {
+        "address": "30 Challenge Road, Ibadan",
+        "city": "Ibadan",
+        "state": "Oyo",
+        "zipcode": "200281"
+      },
+      "keywords": ["bicycles", "cycling", "outdoor recreation"],
+      "products": [
+        {
+          "name": "Mountain Bikes",
+          "categories": ["Bicycles", "Outdoor Recreation"]
+        },
+        {
+          "name": "Bike Accessories",
+          "categories": ["Cycling", "Gear"]
+        },
+        {
+          "name": "Bike Repair Services",
+          "categories": ["Services", "Maintenance"]
+        }
+      ],
+      "hours": {
+        "monday": "9:00 AM - 6:00 PM",
+        "tuesday": "9:00 AM - 6:00 PM",
+        "wednesday": "9:00 AM - 6:00 PM",
+        "thursday": "9:00 AM - 6:00 PM",
+        "friday": "9:00 AM - 6:00 PM",
+        "saturday": "9:00 AM - 6:00 PM",
+        "sunday": "10:00 AM - 4:00 PM"
+      }
+    },
+    {
+      "name": "Oyo Craft Market",
+      "location": {
+        "address": "Oyo Main Market, Oyo",
+        "city": "Oyo",
+        "state": "Oyo",
+        "zipcode": "230271"
+      },
+      "keywords": ["crafts", "handmade", "local artisans"],
+      "products": [
+        {
+          "name": "Pottery",
+          "categories": ["Crafts", "Home Decor"]
+        },
+        {
+          "name": "Woven Baskets",
+          "categories": ["Crafts", "Household"]
+        },
+        {
+          "name": "Beaded Jewelry",
+          "categories": ["Crafts", "Accessories"]
+        }
+      ],
+      "hours": {
+        "monday": "9:00 AM - 5:00 PM",
+        "tuesday": "9:00 AM - 5:00 PM",
+        "wednesday": "9:00 AM - 5:00 PM",
+        "thursday": "9:00 AM - 5:00 PM",
+        "friday": "9:00 AM - 5:00 PM",
+        "saturday": "9:00 AM - 5:00 PM",
+        "sunday": "9:00 AM - 5:00 PM"
+      }
+    },
+    {
+      "name": "Ibadan Hardware Store",
+      "location": {
+        "address": "40 Old Ife Road, Ibadan",
+        "city": "Ibadan",
+        "state": "Oyo",
+        "zipcode": "200281"
+      },
+      "keywords": ["hardware", "tools", "construction supplies"],
+      "products": [
+        {
+          "name": "Power Tools",
+          "categories": ["Tools", "Hardware"]
+        },
+        {
+          "name": "Plumbing Supplies",
+          "categories": ["Home Improvement", "Construction"]
+        },
+        {
+          "name": "Painting Supplies",
+          "categories": ["Home Improvement", "Painting"]
+        }
+      ],
+      "hours": {
+        "monday": "8:00 AM - 6:00 PM",
+        "tuesday": "8:00 AM - 6:00 PM",
+        "wednesday": "8:00 AM - 6:00 PM",
+        "thursday": "8:00 AM - 6:00 PM",
+        "friday": "8:00 AM - 6:00 PM",
+        "saturday": "8:00 AM - 6:00 PM",
+        "sunday": "10:00 AM - 4:00 PM"
+      }
+    },
+    {
+      "name": "Ogbomoso Furniture Emporium",
+      "location": {
+        "address": "8 Ilorin Road, Ogbomoso",
+        "city": "Ogbomoso",
+        "state": "Oyo",
+        "zipcode": "210101"
+      },
+      "keywords": ["furniture", "home decor", "interior design"],
+      "products": [
+        {
+          "name": "Living Room Sets",
+          "categories": ["Furniture", "Home Decor"]
+        },
+        {
+          "name": "Dining Room Furniture",
+          "categories": ["Furniture", "Home Decor"]
+        },
+        {
+          "name": "Home Accessories",
+          "categories": ["Home Decor", "Accessories"]
+        }
+      ],
+      "hours": {
+        "monday": "10:00 AM - 7:00 PM",
+        "tuesday": "10:00 AM - 7:00 PM",
+        "wednesday": "10:00 AM - 7:00 PM",
+        "thursday": "10:00 AM - 7:00 PM",
+        "friday": "10:00 AM - 7:00 PM",
+        "saturday": "10:00 AM - 7:00 PM",
+        "sunday": "12:00 PM - 5:00 PM"
+      }
+    },
+    {
+      "name": "Oyo Farmers Cooperative",
+      "location": {
+        "address": "Oyo-Ogbomoso Road, Oyo",
+        "city": "Oyo",
+        "state": "Oyo",
+        "zipcode": "230271"
+      },
+      "keywords": ["agriculture", "farm produce", "local products"],
+      "products": [
+        {
+          "name": "Fresh Vegetables",
+          "categories": ["Produce", "Vegetables"]
+        },
+        {
+          "name": "Grains",
+          "categories": ["Produce", "Grains"]
+        },
+        {
+          "name": "Honey",
+          "categories": ["Produce", "Natural"]
+        }
+      ],
+      "hours": {
+        "monday": "8:00 AM - 5:00 PM",
+        "tuesday": "8:00 AM - 5:00 PM",
+        "wednesday": "8:00 AM - 5:00 PM",
+        "thursday": "8:00 AM - 5:00 PM",
+        "friday": "8:00 AM - 5:00 PM",
+        "saturday": "8:00 AM - 5:00 PM",
+        "sunday": "9:00 AM - 2:00 PM"
+      }
+    },
+    {
+      "name": "Saki Clothing Boutique",
+      "location": {
+        "address": "12 Olubadan Road, Saki",
+        "city": "Saki",
+        "state": "Oyo",
+        "zipcode": "230281"
+      },
+      "keywords": ["fashion", "clothing", "accessories"],
+      "products": [
+        {
+          "name": "Women's Dresses",
+          "categories": ["Fashion", "Apparel"]
+        },
+        {
+          "name": "Men's Suits",
+          "categories": ["Fashion", "Apparel"]
+        },
+        {
+          "name": "Handbags",
+          "categories": ["Accessories", "Fashion"]
+        }
+      ],
+      "hours": {
+        "monday": "10:00 AM - 7:00 PM",
+        "tuesday": "10:00 AM - 7:00 PM",
+        "wednesday": "10:00 AM - 7:00 PM",
+        "thursday": "10:00 AM - 7:00 PM",
+        "friday": "10:00 AM - 7:00 PM",
+        "saturday": "10:00 AM - 7:00 PM",
+        "sunday": "12:00 PM - 5:00 PM"
+      }
+    },
+    {
+      "name": "Ibadan Pet Supply Store",
+      "location": {
+        "address": "5 Bodija Market, Ibadan",
+        "city": "Ibadan",
+        "state": "Oyo",
+        "zipcode": "200281"
+      },
+      "keywords": ["pets", "pet supplies", "animal care"],
+      "products": [
+        {
+          "name": "Pet Food",
+          "categories": ["Pet Supplies", "Food"]
+        },
+        {
+          "name": "Pet Toys",
+          "categories": ["Pet Supplies", "Toys"]
+        },
+        {
+          "name": "Grooming Supplies",
+          "categories": ["Pet Supplies", "Grooming"]
+        }
+      ],
+      "hours": {
+        "monday": "9:00 AM - 6:00 PM",
+        "tuesday": "9:00 AM - 6:00 PM",
+        "wednesday": "9:00 AM - 6:00 PM",
+        "thursday": "9:00 AM - 6:00 PM",
+        "friday": "9:00 AM - 6:00 PM",
+        "saturday": "9:00 AM - 6:00 PM",
+        "sunday": "10:00 AM - 4:00 PM"
+      }
+    },
+    {
+      "name": "Ogbomoso Electronics Store",
+      "location": {
+        "address": "30 Ilorin Road, Ogbomoso",
+        "city": "Ogbomoso",
+        "state": "Oyo",
+        "zipcode": "210101"
+      },
+      "keywords": ["electronics", "gadgets", "appliances"],
+      "products": [
+        {
+          "name": "Home Theater Systems",
+          "categories": ["Electronics", "Home Entertainment"]
+        },
+        {
+          "name": "Kitchen Appliances",
+          "categories": ["Appliances", "Home"]
+        },
+        {
+          "name": "Computer Accessories",
+          "categories": ["Electronics", "Computers"]
+        }
+      ],
+      "hours": {
+        "monday": "10:00 AM - 8:00 PM",
+        "tuesday": "10:00 AM - 8:00 PM",
+        "wednesday": "10:00 AM - 8:00 PM",
+        "thursday": "10:00 AM - 8:00 PM",
+        "friday": "10:00 AM - 8:00 PM",
+        "saturday": "10:00 AM - 8:00 PM",
+        "sunday": "12:00 PM - 6:00 PM"
+      }
+    }
+  ]

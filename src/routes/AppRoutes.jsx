@@ -11,6 +11,7 @@ import { EditProfile } from "../pages/app/EditProfile";
 import { EmailVerification } from "../pages/website/EmailVerification";
 import { ResendLink } from "../pages/website/ResendLink";
 import { ResetPassword } from "../pages/website/ResetPassword";
+import { Dashboard } from "../pages/app/Dashboard";
 
 export const AppRoutes = () => {
   return (
@@ -42,14 +43,14 @@ export const AppRoutes = () => {
                 </ProtectedRoute>
               }
             />
-            {/* <Route
-              path="/app/messages"
+            <Route
+              path="/app/dashboard"
               element={
                 <ProtectedRoute>
-                  <Messages />
+                  <Dashboard />
                 </ProtectedRoute>
               }
-            /> */}
+            />
 
             {/* Catch-all redirect to home */}
             <Route path="*" element={<Navigate to="/" replace />} />

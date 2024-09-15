@@ -203,7 +203,7 @@ export const EditProfile = () => {
                 {values.isBusinessOwner === true ? (
                   <div className="mb-12 flex flex-col gap-6">
                   <hr className="bg-black mx-2 my-6" />
-                  <div className="flex flex-col w-1/2 flex-grow">
+                  <div className="flex flex-col md:w-1/2 flex-grow">
                   <label className="font-bold" htmlFor="typeOfBusiness">Type of Business?</label>
                   <Input 
                   type="text"
@@ -217,7 +217,7 @@ export const EditProfile = () => {
                   required
                   />
                   </div>
-                  <div className="flex flex-col w-1/2 fles-grow">
+                  <div className="flex flex-col md:w-1/2 fles-grow">
                   <label className="font-bold" htmlFor="businessName">Name of Business?</label>
                   <Input
                   type="text"
