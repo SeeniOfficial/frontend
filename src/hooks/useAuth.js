@@ -31,6 +31,7 @@ export const useAuth = () => {
     try {
       const user = await authService.signIn(credentials);
       // Handle successful sign-in (e.g., store user data, redirect)
+      console.log(user)
       return user;
     } catch (err) {
       setError(err.message);
@@ -66,7 +67,34 @@ export const useAuth = () => {
     }
   };
 
+  const forgotPassword = async (user) => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      const response = await authService.signIn(user);
+      // Handle successful sign-in (e.g., store user data, redirect)
+      return response;
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const resetPassword = async (token, password) => {
+    try {
+      const response = await authService.verifyEmail(token, password);
+      // console.log("Email verified:", response);
+      return response;
+    } catch (error) {
+      throw error
+      // console.error("Error verifying email:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   // Implement other auth methods (signUp, signOut, etc.)
 
-  return { isLoading, error, signIn, signUp, verifyEmail, resendVerificationLink};
+  return { isLoading, error, signIn, signUp, verifyEmail, resendVerificationLink, forgotPassword };
 };

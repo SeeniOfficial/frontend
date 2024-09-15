@@ -10,6 +10,7 @@ import { ExplorePage } from "../pages/website/ExplorePage";
 import { EditProfile } from "../pages/app/EditProfile";
 import { EmailVerification } from "../pages/website/EmailVerification";
 import { ResendLink } from "../pages/website/ResendLink";
+import { ResetPassword } from "../pages/website/ResetPassword";
 
 export const AppRoutes = () => {
   return (
@@ -23,6 +24,7 @@ export const AppRoutes = () => {
           <Route path={`/verify-email/:token`} element={<EmailVerification />} />
           <Route path="/resend-verification" element={<ResendLink />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path={`/reset-password/:token`} element={<ResetPassword />} />
           <Route path="/explore" element={<ExplorePage />} />
             <Route
               path="/app/profile"

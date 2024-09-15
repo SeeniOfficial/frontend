@@ -55,7 +55,7 @@ export const ResendLink = () => {
       >
         <div className="w-full max-w-md bg-white md:rounded-lg shadow-md p-8">
           <h2 className="text-xl md:text-3xl font-bold text-center text-primary mb-8">
-            Resend Verification Link
+            Resend Link
           </h2>
           {!success && (
             <form onSubmit={handleSubmit} className="flex flex-col gap-8">

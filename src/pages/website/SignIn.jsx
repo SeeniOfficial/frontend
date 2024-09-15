@@ -14,7 +14,7 @@ import { authService } from "../../services/authService";
 
 export const SignIn = () => {
   const navigate = useNavigate();
-  const { login } = useAuthStore();
+  const { user, login, isAuthenticated } = useAuthStore();
   const { values, handleChange, resetForm } = useForm({
     email: '',
     password: '',
@@ -35,7 +35,7 @@ export const SignIn = () => {
       const response = await authService.signIn(values);
       
       // Assuming the API returns user data and a token
-      const { user, token } = response;
+      const { token } = response;
       
       // Store the token in localStorage
       localStorage.setItem('authToken', token);
@@ -48,13 +48,14 @@ export const SignIn = () => {
       
       // Redirect to a protected route (e.g., dashboard)
       navigate('/app/profile');
+    console.log(user, response, isAuthenticated);
+
     } catch (error) {
-      setError(error.response.data.message || "An error occurred during sign in");
+      setError(error.response.data || error.response.data.message || "An error occurred during sign in");
       console.log(error)
     } finally {
       setIsLoading(false);
     }
-    console.log(values, user);
   };
 
   return (
