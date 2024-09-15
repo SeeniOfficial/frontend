@@ -7,16 +7,19 @@ import { Button } from "../../components/Button";
 import { useForm } from "../../hooks/useForm";
 import { Footer } from "../../components/Footer";
 import { useAuthStore } from "../../store/authStore";
+import { useError } from "../../hooks/useError";
 
 export const EditProfile = () => {
   const navigate = useNavigate();
+  const { user } = useAuthStore();
   const { values, handleChange, resetForm } = useForm({
-    firstName: "",
-    lastName: "",
+    firstName: user.firstName,
+    lastName: user.lastName,
     occupation: "",
     nationality: "",
     city: "",
     location: "",
+    email: user.email,
     bio: "",
     isBusinessOwner: false,
     userType: "",
@@ -27,7 +30,7 @@ export const EditProfile = () => {
     linkedinURL: "",
     facebookURL: "",
   });
-  const { error, setError, clearError } = useAuthStore();
+  const { error, setError, clearError } =useError();
   const [isLoading, setIsLoading] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
 
@@ -37,8 +40,6 @@ export const EditProfile = () => {
     setIsLoading(true);
     
     try {
-      // Here you would typically call an API to update the profile
-      // For now, we'll just simulate a successful update
       await new Promise(resolve => setTimeout(resolve, 1000));
       console.log("Profile updated:", values);
       // Navigate back to profile or show success message
@@ -114,6 +115,13 @@ export const EditProfile = () => {
                   onChange={handleChange}
                 />
               </div>
+              <Input
+                type="email"
+                name="email"
+                placeholder="Email Address"
+                value={values.email}
+                onChange={handleChange}
+                />
               <motion.textarea 
                   initial={{ scale: 1 }}
                   animate={{ scale: isFocused ? 1.02 : 1 }}
@@ -121,7 +129,9 @@ export const EditProfile = () => {
                 placeholder="Bio"
                 value={values.bio}
                 onChange={handleChange}
-                  className={`flex-grow h-32 rounded-lg border-primary/50 shadow-sm block w-full ring-1 ring-inset ring-whyte focus:ring-2 focus:ring-inset focus:ring-primary border-2 ${isLoading === true ? 'border-grey': 'border-primary/50'} outline-whyte sm:text-sm sm:leading-6 text-xs md:text-sm`}
+                onFocus={() => setIsFocused(true)}
+                  onBlur={() => setIsFocused(false)}
+                  className={`flex-grow h-32 rounded-lg p-3 border-primary/50 shadow-sm block w-full ring-1 ring-inset ring-whyte focus:ring-2 focus:ring-inset focus:ring-primary border-2 ${isLoading === true ? 'border-grey': 'border-primary/50'} outline-whyte sm:text-sm sm:leading-6 text-xs md:text-sm`}
                   required
                   disabled={isLoading}
                 rows="4"
@@ -211,8 +221,6 @@ export const EditProfile = () => {
                   placeholder="Example. Wine Buisness"
                   value={values.typeOfBusiness}
                   onChange={handleChange}
-                  onFocus={() => setIsFocused(true)}
-                  onBlur={() => setIsFocused(false)}
                   className="flex-grow"
                   required
                   />
@@ -239,7 +247,9 @@ export const EditProfile = () => {
                   rows="10"
                   value={values.aboutBusiness}
                   onChange={handleChange}
-                  className={`flex-grow h-32 rounded-lg border-primary/50 shadow-sm block w-full ring-1 ring-inset ring-whyte focus:ring-2 focus:ring-inset focus:ring-primary border-2 ${isLoading === true ? 'border-grey': 'border-primary/50'} outline-whyte sm:text-sm sm:leading-6 text-xs md:text-sm`}
+                  onFocus={() => setIsFocused(true)}
+                  onBlur={() => setIsFocused(false)}
+                  className={`p-4 flex-grow h-32 rounded-lg border-primary/50 shadow-sm block w-full ring-1 ring-inset ring-whyte focus:ring-2 focus:ring-inset focus:ring-primary border-2 ${isLoading === true ? 'border-grey': 'border-primary/50'} outline-whyte sm:text-sm sm:leading-6 text-xs md:text-sm`}
                   required
                   disabled={isLoading}
                    />

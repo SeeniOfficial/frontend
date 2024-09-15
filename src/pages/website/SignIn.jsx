@@ -39,7 +39,7 @@ export const SignIn = () => {
       
       // Store the token in localStorage
       localStorage.setItem('authToken', token);
-      
+      const user = response.user;
       // Update the auth store
       login(user);
       
@@ -51,7 +51,7 @@ export const SignIn = () => {
     console.log(user, response, isAuthenticated);
 
     } catch (error) {
-      setError(error.response.data || error.response.data.message || "An error occurred during sign in");
+      setError("An error occurred during sign in");
       console.log(error)
     } finally {
       setIsLoading(false);

@@ -4,9 +4,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/logo-primary.png";
 import { Avatar } from "./Avatar";
+import { useAuthStore } from "../store/authStore";
 
-export const AppHeader = ({ toggleSidebar, user, sideBarOpen }) => {
+export const AppHeader = ({ toggleSidebar, sideBarOpen }) => {
   const navigate = useNavigate();
+  const { user } = useAuthStore()
   return (
     <header className="bg-white mb-0.5">
       <div className="px-4 md:px-12 py-4 flex justify-between items-center">
@@ -16,7 +18,7 @@ export const AppHeader = ({ toggleSidebar, user, sideBarOpen }) => {
           </div>
         </div>
         <div className="flex gap-2 items-center">
-          <Avatar user={user} />
+          <Avatar user={`${user.firstName} ${user.lastName}` || "Ajao Richard"} style="w-10 h-10 p-4 text-sm text-white bg-primary" />
           <Button
             label="Log Out"
             btnStyles="bg-error text-white px-4 py-2 rounded-lg"

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { color, motion } from "framer-motion";
 import upload from "../../assets/upload.svg";
 import { Button } from "../../components/Button";
@@ -13,6 +13,8 @@ import card from "../../assets/card.svg";
 import payment from "../../assets/payment.png";
 import { useNavigate } from "react-router-dom";
 import { MdEdit } from "react-icons/md";
+import { useAuthStore } from "../../store/authStore";
+import { Avatar } from "../../components/Avatar";
 
 
 export const ProfilePage = () => {
@@ -79,6 +81,9 @@ export const ProfilePage = () => {
     "I am a very interesting individual interested in the sales and purchase of items"
   );
   const navigate = useNavigate()
+  const { user } = useAuthStore();
+
+  useEffect (() => console.log(user), [])
 
   return (
     <motion.div
@@ -104,13 +109,17 @@ export const ProfilePage = () => {
 
       {/* Profile Image and Info */}
       <div className="flex flex-col items-center -mt-12">
-        <div className="w-24 h-24 bg-white border border-primary rounded-full mb-4 md:mb-0 md:mr-6 flex items-center justify-center">
-          <span className="text-primary text-sm text-center">
-            Click here to upload profile image
-          </span>
+        <div className="relative w-24 h-24 bg-white border border-primary rounded-full mb-4 md:mb-0 md:mr-6 flex items-center justify-center shadow-md">
+          <div className="opacity-80">
+          <Avatar user={`${user.firstName} ${user.lastName}` || "Ajao Richard"} style="w-24 h-24 text-5xl text-primary" />
+          </div>
+          <span className="absolute -right-5 -bottom-5 p-4 text-sm rounded-full flex items-center justify-center text-white font-bold">
+          <img src={upload} alt="upload profile image" className="w-8 h-8" />
+          <input type="image" className="opacity-0  w-8 h-8 z-10 bg-neutral absolute" />
+      </span>
         </div>
         <div className="flex flex-col gap-2 items-center text-center font-bold">
-          <h2 className="text-xl">Richard Ajao</h2>
+          <h2 className="text-xl">{user.firstName} {user.lastName}</h2>
           <p className="text-xs text-secondary flex items-center gap-2">
             <span>
               <svg
@@ -161,7 +170,7 @@ export const ProfilePage = () => {
         <label htmlFor="star rating" className="text-xs font-bold text-primary">
           Star Rating
         </label>
-        <StarRating value={0} starColor="yellow" />
+        <StarRating value={user.ratings.numberOfRatings} starColor="yellow" />
       </div>
 
       {/* Bio */}

@@ -1,7 +1,7 @@
 import React from "react";
 
-export const Avatar = ({ user }) => {
-    const getInitials = (name = 'Ajao Richard') => {
+export const Avatar = ({ user, style }) => {
+    const getInitials = (name) => {
         const names = name.split(" ");
         return names
           .map((n) => n[0])
@@ -19,7 +19,7 @@ export const Avatar = ({ user }) => {
 //     );
 //   } else {
     return (
-      <div className="w-10 h-10 p-4 text-sm rounded-full bg-primary flex items-center justify-center text-white font-bold">
+      <div className={`rounded-full flex items-center justify-center font-bold ${style}`}>
         {getInitials(user)}
       </div>
     );
