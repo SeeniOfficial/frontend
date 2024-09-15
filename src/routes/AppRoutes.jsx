@@ -34,15 +34,15 @@ export const AppRoutes = () => {
                 </ProtectedRoute>
               }
             />
-            {/* <Route
-              path="/app/catalog"
+            <Route
+              path="/app/edit-profile"
               element={
                 <ProtectedRoute>
-                  <Catalog />
+                  <EditProfile />
                 </ProtectedRoute>
               }
             />
-            <Route
+            {/* <Route
               path="/app/messages"
               element={
                 <ProtectedRoute>
