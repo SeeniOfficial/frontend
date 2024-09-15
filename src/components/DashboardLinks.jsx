@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { LinkItem } from './LinkItem'
+import { useAuthStore } from '../store/authStore'
 
 export const DashboardLinks = () => {
+  const { logout } = useAuthStore();
   return (
     <>
         <div className="flex flex-col gap-6">
@@ -123,7 +125,7 @@ export const DashboardLinks = () => {
               </span>
               Help
             </LinkItem>
-            <LinkItem to="/logout">
+            <LinkItem onClick={() => logout()}>
               <span>
                 <svg
                   width="20"

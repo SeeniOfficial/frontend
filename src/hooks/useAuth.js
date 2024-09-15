@@ -6,6 +6,7 @@ export const useAuth = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const { login } = useAuthStore();
+  const logout = useAuthStore.getState().logout;
 
   const signUp = async (userData) => {
     console.log(userData)
@@ -94,7 +95,24 @@ export const useAuth = () => {
     }
   };
 
+
+const logOut = () => {
+  // Clear the auth token from localStorage
+  localStorage.removeItem('authToken');
+  // Get the logout function from the auth store
+ 
+
+  // Call the logout function to update the auth state
+  logout();
+
+  // Optionally, you can also call checkAuth to ensure the state is updated
+  const checkAuth = useAuthStore.getState().checkAuth;
+  checkAuth();
+
+  console.log('User logged out successfully');
+};
+
   // Implement other auth methods (signUp, signOut, etc.)
 
-  return { isLoading, error, signIn, signUp, verifyEmail, resendVerificationLink, forgotPassword };
+  return { isLoading, error, signIn, signUp, verifyEmail, resendVerificationLink, forgotPassword, resetPassword };
 };

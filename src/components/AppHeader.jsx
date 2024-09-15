@@ -7,8 +7,7 @@ import { Avatar } from "./Avatar";
 import { useAuthStore } from "../store/authStore";
 
 export const AppHeader = ({ toggleSidebar, sideBarOpen }) => {
-  const navigate = useNavigate();
-  const { user } = useAuthStore()
+  const { user, logout } = useAuthStore()
   return (
     <header className="bg-white mb-0.5">
       <div className="px-4 md:px-12 py-4 flex justify-between items-center">
@@ -22,7 +21,7 @@ export const AppHeader = ({ toggleSidebar, sideBarOpen }) => {
           <Button
             label="Log Out"
             btnStyles="bg-error text-white px-4 py-2 rounded-lg"
-            click={() => navigate("/")}
+            click={() => logout()}
           />
           <motion.button
             onClick={toggleSidebar}
