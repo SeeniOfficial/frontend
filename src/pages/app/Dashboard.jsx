@@ -40,23 +40,16 @@ export const Dashboard = () => {
   const [nearbyStores, setNearbyStores] = useState([]);
   const [popularProducts, setPopularProducts] = useState([]);
   const [dailyNeeds, setDailyNeeds] = useState([]);
-  const [showButtons, setShowButtons] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [suggestions, setSuggestions] = useState([]);
+  const [showSearchResults, setShowSearchResults] = useState(false);
   const scrollContainerRef = useRef(null);
   const scrollContainerRef2 = useRef(null);
   const scrollContainerRef3 = useRef(null);
 
-  const scroll = (direction) => {
-    const container = scrollContainerRef.current;
-    const containEr = scrollContainerRef2.current;
-
+  const scroll = (direction, containerRef) => {
+    const container = containerRef.current;
     if (container) {
-      const scrollAmount = container.offsetWidth * 0.75; // Scroll 75% of the container width
-      container.scrollBy({
-        left: direction === "left" ? -scrollAmount : scrollAmount,
-        behavior: "smooth",
-      });
-    }
-    if (containEr) {
       const scrollAmount = container.offsetWidth * 0.75; // Scroll 75% of the container width
       container.scrollBy({
         left: direction === "left" ? -scrollAmount : scrollAmount,
@@ -104,7 +97,53 @@ export const Dashboard = () => {
     setActiveCategory(cat);
   };
 
+  const handleSearchChange = (event) => {
+    const value = event.target.value;
+    setSearchTerm(value);
+
+    if (value) {
+      const filteredSuggestions = storesData.filter((store) => {
+        const storeMatches = store.name
+          .toLowerCase()
+          .includes(value.toLowerCase());
+        const productMatches = store.products.some((product) =>
+          product.categories.some((category) =>
+            category.toLowerCase().includes(value.toLowerCase())
+          )
+        );
+        return storeMatches || productMatches;
+      });
+      setSuggestions(filteredSuggestions);
+    } else {
+      showSearchResults(false)
+      setSuggestions([]);
+    }
+  };
+
+  const handleSuggestionClick = (storeName) => {
+    setSearchTerm(storeName);
+    setSuggestions([]);
+    setShowSearchResults(true);
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      setShowSearchResults(true);
+    }
+  };
+
   const renderContent = () => {
+    const storesToDisplay = showSearchResults
+    ? storesData.filter((store) => {
+        const storeMatches = store.name.toLowerCase().includes(searchTerm.toLowerCase());
+        const productMatches = store.products.some(product =>
+          product.categories.some(category =>
+            category.toLowerCase().includes(searchTerm.toLowerCase())
+          )
+        );
+        return storeMatches || productMatches;
+      })
+    : "";
     switch (activeTab) {
       case "categories":
         return <div>Categories content here</div>;
@@ -118,173 +157,177 @@ export const Dashboard = () => {
         return (
           <>
             <div className="relative mb-8">
-              <h2 className="text-2xl font-semibold mb-4">Stores Near You</h2>
-              <motion.div
-                ref={scrollContainerRef}
-                className="relative flex overflow-x-hidden gap-10 mb-8 w-full pb-4"
-              >
-                {userLocation ? (
-                  <div className="flex gap-4">
-                    {nearbyStores.map((store) => (
-                      <Card
-                        key={store.name}
-                        roundedCorners
-                        image="https://via.placeholder.com/150" // You may want to add actual store images
-                        title={store.name}
-                        tag="Open" // You may want to add actual open/closed status
-                        description={
-                          <div className="flex items-center justify-between text-secondary font-thin">
-                            <HiOutlineLocationMarker />
-                            {store.location.address}
-                          </div>
-                        }
-                        padding={true}
-                        footer={
-                          <div className="flex justify-between items-center w-full">
-                            <div className="flex items-center">
-                              <span className="text-neutral text-xl">★</span>
-                              <span className="font-semibold">4.85</span>
-                            </div>
-                            <motion.span
-                              className="text-secondary text-xs font-semibold"
-                              whileHover={{ scale: 1.05 }}
-                            >
-                              {store.keywords.join(", ")}
-                            </motion.span>
-                          </div>
-                        }
-                        imageClasses="rounded-xl"
-                        cardStyles="w-[20em] relative flex-none cursor-pointer"
-                      />
-                    ))}
+        <h2 className="text-2xl font-semibold mb-4">
+          {showSearchResults ? "Search Results" : "Stores Near You"}
+        </h2>
+        <motion.div
+          ref={scrollContainerRef}
+          className="relative flex overflow-x-hidden gap-10 mb-8 w-full pb-4"
+        >
+          {showSearchResults && storesToDisplay.map((store) => (
+            <Card
+              key={store.name}
+              roundedCorners
+              image="https://picsum.photos/id/341/5000/3337" // Replace with actual store images
+              title={store.name}
+              tag="Open" // Add actual open/closed status if available
+              description={
+                <div className="flex items-center gap-0.5 text-xs text-secondary font-thin">
+                  <HiOutlineLocationMarker />
+                  {store.location.address}
+                </div>
+              }
+              padding={true}
+              footer={
+                <div className="flex-col justify-between items-center w-full">
+                  <div className="flex items-center justify-end">
+                    <span className="text-neutral text-xl">★</span>
+                    <span className="font-semibold">4.85</span>
                   </div>
-                ) : (
-                  <p>Loading location...</p>
-                )}
-              </motion.div>
-              <AnimatePresence>
-                <motion.button
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  className="absolute left-0 top-1/3 bg-white p-3 rounded-full shadow-md"
-                  onClick={() => scroll("left")}
-                >
-                  <FaAngleLeft />
-                </motion.button>
-                <motion.button
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  className="absolute right-0 top-1/3 bg-white p-3 rounded-full shadow-md"
-                  onClick={() => scroll("right")}
-                >
-                  <FaAngleRight />
-                </motion.button>
-                {/* </>
-          )} */}
-              </AnimatePresence>
-            </div>
+                  <motion.span
+                    className="text-grey text-xs"
+                    whileHover={{ scale: 1.05 }}
+                  >
+                    {store.keywords.join(", ")}
+                  </motion.span>
+                </div>
+              }
+              imageClasses="rounded-xl"
+              cardStyles="w-[12em] md:w-[16em] lg:w-[20em] relative flex-none cursor-pointer"
+            />
+          ))}
+          {!showSearchResults && nearbyStores.map((store) => (
+            <Card
+              key={store.name}
+              roundedCorners
+              image="https://picsum.photos/id/341/5000/3337" // Replace with actual store images
+              title={store.name}
+              tag="Open" // Add actual open/closed status if available
+              description={
+                <div className="flex items-center gap-0.5 text-xs text-secondary font-thin">
+                  <HiOutlineLocationMarker />
+                  {store.location.address}
+                </div>
+              }
+              padding={true}
+              footer={
+                <div className="flex-col justify-between items-center w-full">
+                  <div className="flex items-center justify-end">
+                    <span className="text-neutral text-xl">★</span>
+                    <span className="font-semibold">4.85</span>
+                  </div>
+                  <motion.span
+                    className="text-grey text-xs"
+                    whileHover={{ scale: 1.05 }}
+                  >
+                    {store.keywords.join(", ")}
+                  </motion.span>
+                </div>
+              }
+              imageClasses="rounded-xl"
+              cardStyles="w-[12em] md:w-[16em] lg:w-[20em] relative flex-none cursor-pointer"
+            />
+          ))}
+        </motion.div>
+      </div>
             <div className="relative mb-8">
               <h2 className="text-2xl font-semibold mb-4">Popular Products</h2>
               <div className="flex gap-4">
-              <motion.div
-                ref={scrollContainerRef2}
-                className="relative flex overflow-x-hidden gap-10 mb-8 w-full pb-4"
-              >
-                {popularProducts.map((product, index) => (
-                  <Card
-                    key={index}
-                    roundedCorners
-                    image="https://via.placeholder.com/150" // You may want to add actual product images
-                    title={product.name}
-                    padding={true}
-                    footer={
-                      <motion.span
-                        className="text-green-600 font-semibold"
-                        whileHover={{ scale: 1.05 }}
-                      >
-                        {product.categories.join(", ")}
-                      </motion.span>
-                    }
-                    imageClasses="rounded-xl"
-                    cardStyles="w-[20em] relative flex-none cursor-pointer"
-                  />
-                ))}
-              </motion.div>
-                 <AnimatePresence>
-                <motion.button
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  className="absolute left-0 top-1/3 bg-white p-3 rounded-full shadow-md"
-                  onClick={() => scroll("left")}
+                <motion.div
+                  ref={scrollContainerRef2}
+                  className="relative flex overflow-x-hidden gap-10 mb-8 w-full pb-4"
                 >
-                  <FaAngleLeft />
-                </motion.button>
-                <motion.button
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  className="absolute right-0 top-1/3 bg-white p-3 rounded-full shadow-md"
-                  onClick={() => scroll("right")}
-                >
-                  <FaAngleRight />
-                </motion.button>
-                {/* </>
-          )} */}
-              </AnimatePresence>
+                  {popularProducts.map((product, index) => (
+                    <Card
+                      key={index}
+                      roundedCorners
+                      image="https://picsum.photos/id/627/2509/1673" // You may want to add actual product images
+                      title={product.name}
+                      padding={true}
+                      footer={
+                        <motion.span
+                          className="text-green-600 font-semibold"
+                          whileHover={{ scale: 1.05 }}
+                        >
+                          {product.categories.join(", ")}
+                        </motion.span>
+                      }
+                      imageClasses="rounded-xl"
+                      cardStyles="w-[12em] md:w-[16em] lg:w-[20em] relative flex-none cursor-pointer"
+                    />
+                  ))}
+                </motion.div>
+                <AnimatePresence>
+                  <motion.button
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="absolute left-0 top-1/3 bg-white p-3 rounded-full shadow-md"
+                    onClick={() => scroll("left", scrollContainerRef2)}
+                  >
+                    <FaAngleLeft />
+                  </motion.button>
+                  <motion.button
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="absolute right-0 top-1/3 bg-white p-3 rounded-full shadow-md"
+                    onClick={() => scroll("right", scrollContainerRef2)}
+                  >
+                    <FaAngleRight />
+                  </motion.button>
+                </AnimatePresence>
               </div>
             </div>
             <div className="relative mb-8">
               <h2 className="text-2xl font-semibold mb-4">Daily Needs</h2>
               <div className="flex flex-wrap gap-4">
-              <motion.div
-                ref={scrollContainerRef3}
-                className="relative flex overflow-x-hidden gap-10 mb-8 w-full pb-4"
-              >
-                {dailyNeeds.map((need, index) => (
-                  <Card
-                    key={index}
-                    roundedCorners
-                    image="https://via.placeholder.com/150" // You may want to add actual product images
-                    title={need.name}
-                    padding={true}
-                    footer={
-                      <motion.span
-                        className="text-green-600 font-semibold"
-                        whileHover={{ scale: 1.05 }}
-                      >
-                        {need.categories.join(", ")}
-                      </motion.span>
-                    }
-                    imageClasses="rounded-xl"
-                    cardStyles="w-[20em] relative flex-none cursor-pointer"
-                  />
-                ))}
+                <motion.div
+                  ref={scrollContainerRef3}
+                  className="relative flex overflow-x-hidden gap-10 mb-8 w-full pb-4"
+                >
+                  {dailyNeeds.map((need, index) => (
+                    <Card
+                      key={index}
+                      roundedCorners
+                      image="https://picsum.photos/id/491/5000/4061" // You may want to add actual product images
+                      title={need.name}
+                      padding={true}
+                      footer={
+                        <motion.span
+                          className="text-green-600 font-semibold"
+                          whileHover={{ scale: 1.05 }}
+                        >
+                          {need.categories.join(", ")}
+                        </motion.span>
+                      }
+                      imageClasses="rounded-xl"
+                      cardStyles="w-[12em] md:w-[16em] lg:w-[20em] relative flex-none cursor-pointer"
+                    />
+                  ))}
                 </motion.div>
-                 <AnimatePresence>
-                <motion.button
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  className="absolute left-0 top-1/3 bg-white p-3 rounded-full shadow-md"
-                  onClick={() => scroll("left")}
-                >
-                  <FaAngleLeft />
-                </motion.button>
-                <motion.button
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  className="absolute right-0 top-1/3 bg-white p-3 rounded-full shadow-md"
-                  onClick={() => scroll("right")}
-                >
-                  <FaAngleRight />
-                </motion.button>
-                {/* </>
+                <AnimatePresence>
+                  <motion.button
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="absolute left-0 top-1/3 bg-white p-3 rounded-full shadow-md"
+                    onClick={() => scroll("left", scrollContainerRef3)}
+                  >
+                    <FaAngleLeft />
+                  </motion.button>
+                  <motion.button
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="absolute right-0 top-1/3 bg-white p-3 rounded-full shadow-md"
+                    onClick={() => scroll("right", scrollContainerRef3)}
+                  >
+                    <FaAngleRight />
+                  </motion.button>
+                  {/* </>
           )} */}
-              </AnimatePresence>
+                </AnimatePresence>
               </div>
             </div>
           </>
@@ -293,8 +336,8 @@ export const Dashboard = () => {
   };
 
   return (
-    <div className="bg-whyte w-full mx-auto px-8 py-6 md:px-12">
-      <div className="flex justify-between items-center font-bold gap-4 md:gap-10 text-xs md:text-md overflow-hidden scrollbar-hide">
+    <div className="relative bg-whyte w-full mx-auto px-8 py-6 md:px-12">
+      <div className="flex w-full justify-between items-center font-bold gap-4 md:gap-10 text-xs md:text-md overflow-x-auto scrollbar-hide">
         <div
           className={`cursor-pointer flex items-center gap-1 ${
             activeTab === "explore" ? "text-primary" : "text-gray-800"
@@ -332,10 +375,9 @@ export const Dashboard = () => {
           Rankings
         </div>
         <div
-          className={`cursor-pointer flex items-center gap-1 h-7 px-2 rounded-full bg-grey/20 w-72 border-2  border-grey/0 focus-within:border-2 focus-within:border-secondary ${
+          className={`hidden cursor-pointer md:flex items-center gap-1 h-7 px-2 rounded-full bg-grey/20 w-72 border-2 border-grey/0 ${
             activeTab === "search" ? "" : "text-gray-800"
           }`}
-          onClick={() => handleTabClick("search")}
         >
           <FiSearch className="text-secondary" />
           <input
@@ -343,14 +385,75 @@ export const Dashboard = () => {
             name="search"
             placeholder="Search"
             className="bg-transparent outline-none w-full font-normal flex items-center align-middle"
-            id=""
+            value={searchTerm}
+            onChange={handleSearchChange}
+            onKeyDown={handleKeyDown} // Add this line
           />
+          {suggestions.length > 0 && !showSearchResults && (
+            <div className="absolute bg-white border border-gray-300 top-14 rounded-md mt-1 z-10 w-72">
+              {suggestions.map((store) => (
+                <div
+                  key={store.name}
+                  className="p-2 hover:bg-gray-200 cursor-pointer"
+                  onClick={() => handleSuggestionClick(store.name)} // Use the new handler
+                >
+                  <strong>{store.name}</strong>
+                  <div className="text-sm text-gray-500">
+                    {store.products.map((product) =>
+                      product.categories.map((category) => (
+                        <span key={category} className="mr-1">
+                          {category}
+                        </span>
+                      ))
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
       <div className="text-white px-4 md:px-8 bg-gradient-to-r from-green-950 to-green-950 via-green-900 my-2 flex flex-col justify-center h-32 md:h-40">
-          <div className="text-xl md:text-2xl font-bold">Dashboard</div>
+        <div className="text-xl md:text-2xl font-bold">Dashboard</div>
+      </div>
+      <div
+          className={`md:hidden cursor-pointer flex items-center gap-1 h-7 px-2 rounded-full bg-grey/20 w-72 border-2 border-grey/0 ${
+            activeTab === "search" ? "" : "text-gray-800"
+          }`}
+        >
+          <FiSearch className="text-secondary" />
+          <input
+            type="search"
+            name="search"
+            placeholder="Search"
+            className="bg-transparent outline-none w-full font-normal flex items-center align-middle"
+            value={searchTerm}
+            onChange={handleSearchChange}
+            onKeyDown={handleKeyDown} // Add this line
+          />
+          {suggestions.length > 0 && !showSearchResults && (
+            <div className="absolute bg-white border border-gray-300 top-14 rounded-md mt-1 z-10 w-72">
+              {suggestions.map((store) => (
+                <div
+                  key={store.name}
+                  className="p-2 hover:bg-gray-200 cursor-pointer"
+                  onClick={() => handleSuggestionClick(store.name)} // Use the new handler
+                >
+                  <strong>{store.name}</strong>
+                  <div className="text-sm text-gray-500">
+                    {store.products.map((product) =>
+                      product.categories.map((category) => (
+                        <span key={category} className="mr-1">
+                          {category}
+                        </span>
+                      ))
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
-
       {/* Categories */}
       <div className="flex w-full justify-between gap-6 mb-8 overflow-x-auto scrollbar-hide py-4 px-1">
         {categories.map((category) => (

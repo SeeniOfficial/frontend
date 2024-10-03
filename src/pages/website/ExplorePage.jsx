@@ -56,7 +56,9 @@ export const ExplorePage = () => {
 
   return (
     <PublicLayout>
-      <div className="bg-whyte w-full mx-auto px-8 py-6 md:px-32">
+      <motion.div className="bg-whyte w-full mx-auto px-8 py-6 md:px-32" initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}>
         <div className="flex justify-between items-center font-bold gap-4 md:gap-10 text-xs md:text-md overflow-hidden scrollbar-hide">
           <div
             className={`cursor-pointer flex items-center gap-1 ${
@@ -139,7 +141,7 @@ export const ExplorePage = () => {
         </div>
 
         <div className="relative overflow-hidden">{renderContent()}</div>
-      </div>
+      </motion.div>
     </PublicLayout>
   );
 };

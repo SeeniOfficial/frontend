@@ -35,6 +35,7 @@ export const Landing = () => {
           label="Start"
           containerClasses="px-10 md:px-32 py-10"
           hero={false}
+          click={() => navigate("/sign-up")}
         />
         <ContentSection
           sectionTitle="Discover the best local vendors near you."
@@ -44,6 +45,7 @@ export const Landing = () => {
           containerClasses="px-10 md:px-32 py-10"
           hero={false}
           reversed
+          click={() => navigate("/explore")}
         />
         <FAQ />
         <Newsletter />
