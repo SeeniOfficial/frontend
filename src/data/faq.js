@@ -1,7 +1,7 @@
 export const faqs = [
-    { question: 'What is Seeni?', answer: 'Answer to question 1.' },
-    { question: 'Why should i use Seeni?', answer: 'Answer to question 2.' },
-    { question: 'Can local vendors use Seeni?', answer: 'Answer to question 3.' },
-    { question: 'How can Seeni grow my sales?', answer: 'Answer to question 4.' },
-    { question: 'Can I pay for goods and services on Seeni?', answer: 'Answer to question 3.' },
+    { question: 'What is Seeni?', answer: 'Seeni is a hyperlocal marketplace designed to connect local vendors, service providers, and short-term job seekers with nearby customers and employers. It creates a dynamic ecosystem for goods, services, and employment opportunities within local communities.' },
+    { question: 'Why should i use Seeni?', answer: 'Using Seeni allows you to access a comprehensive platform that combines goods, services, and jobs, all tailored to meet the unique needs of local markets. It fosters economic growth and empowerment while addressing common challenges like limited market access and trust issues in transactions.' },
+    { question: 'Can local vendors use Seeni?', answer: 'Yes, local vendors, including micro, small, and medium-scale businesses, can utilize Seeni to establish a digital presence, connect with customers, and enhance their visibility in the market.' },
+    { question: 'How can Seeni grow my sales?', answer: 'Seeni can help grow your sales by connecting you with more customers through real-time updates, a digital storefront, and AI-powered matching. It empowers you to reach new audiences and increases brand awareness, ultimately driving sales growth.' },
+    { question: 'Can I pay for goods and services on Seeni?', answer: 'Yes, Seeni offers secure payment options, allowing users to pay for goods and services directly through the platform, facilitating smooth and trustworthy transactions.' },
   ];
