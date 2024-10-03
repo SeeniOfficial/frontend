@@ -30,13 +30,13 @@ export const Explore = () => {
           <Card
             key={deal.id}
             roundedCorners
-            image={deal.image}
+            image={deal.image} 
             title={deal.title}
             tag={deal.status}
             description={deal.restaurant}
             padding={true}
             footer={deal.footer}
-            imageClasses='rounded-xl'
+            imageClasses='rounded-xl best-deals'
             cardStyles="w-[12em] md:w-[16em] lg:w-[20em] relative flex-none cursor-pointer"
           />
         ))}
@@ -76,7 +76,7 @@ export const Explore = () => {
           description={item.restaurant}
           padding={true}
           footer={item.footer}
-          imageClasses='rounded-xl'
+          imageClasses='rounded-xl recently'
           cardStyles="w-[12em] md:w-[16em] lg:w-[20em] relative flex-none cursor-pointer"
         />
       ))}

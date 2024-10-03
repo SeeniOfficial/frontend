@@ -24,7 +24,7 @@ export const deals = [
         </div>
       ),
       price: 1000,
-      image: location,
+      image: "https://picsum.photos/id/999/4000/2667",
       status: "Open",
     },
     {
@@ -33,7 +33,7 @@ export const deals = [
       restaurant: <div className="text-secondary">Joyful Eatery</div>,
       rating: 4.85,
       price: 1500,
-      image: "happy_meal.jpg",
+      image: "https://picsum.photos/id/999/4000/2667",
       status: "Open",
     },
     {
@@ -42,7 +42,7 @@ export const deals = [
       restaurant: <div className="text-secondary">Royal Burgers</div>,
       rating: 4.46,
       price: 1400,
-      image: "kings_burger.jpg",
+      image: "https://picsum.photos/id/999/4000/2667",
       status: "Closed",
     },
     {
@@ -66,7 +66,7 @@ export const deals = [
         </div>
       ),
       price: 1000,
-      image: location,
+      image: "https://picsum.photos/id/999/4000/2667",
       status: "Open",
     },
     {
@@ -90,7 +90,7 @@ export const deals = [
         </div>
       ),
       price: 1000,
-      image: location,
+      image: "https://picsum.photos/id/999/4000/2667",
       status: "Open",
     },
     {
@@ -114,7 +114,7 @@ export const deals = [
         </div>
       ),
       price: 1000,
-      image: location,
+      image: "https://picsum.photos/id/999/4000/2667",
       status: "Open",
     },
     {
@@ -138,7 +138,7 @@ export const deals = [
         </div>
       ),
       price: 1000,
-      image: location,
+      image: "https://picsum.photos/id/999/4000/2667",
       status: "Open",
     },
     {
@@ -162,7 +162,7 @@ export const deals = [
         </div>
       ),
       price: 1000,
-      image: location,
+      image: "https://picsum.photos/id/999/4000/2667",
       status: "Open",
     },
   ];
@@ -189,7 +189,7 @@ export const recentlyAdded = [
         </div>
       ),
       price: 1000,
-      image: location,
+      image: "https://picsum.photos/id/1080/5000/3335",
       status: "Open",
     },
     {
@@ -198,7 +198,7 @@ export const recentlyAdded = [
       restaurant: <div className="text-secondary">Joyful Eatery</div>,
       rating: 4.85,
       price: 1500,
-      image: "happy_meal.jpg",
+      image: "https://picsum.photos/id/1080/5000/3335",
       status: "Open",
     },
     {
@@ -207,7 +207,7 @@ export const recentlyAdded = [
       restaurant: <div className="text-secondary">Royal Burgers</div>,
       rating: 4.46,
       price: 1400,
-      image: "kings_burger.jpg",
+      image: "https://picsum.photos/id/1080/5000/3335",
       status: "Closed",
     },
     {
@@ -231,7 +231,7 @@ export const recentlyAdded = [
         </div>
       ),
       price: 1000,
-      image: location,
+      image: "https://picsum.photos/id/1080/5000/3335",
       status: "Open",
     },
     {
@@ -255,7 +255,7 @@ export const recentlyAdded = [
         </div>
       ),
       price: 1000,
-      image: location,
+      image: "https://picsum.photos/id/1080/5000/3335",
       status: "Open",
     },
     {
@@ -279,7 +279,7 @@ export const recentlyAdded = [
         </div>
       ),
       price: 1000,
-      image: location,
+      image: "https://picsum.photos/id/1080/5000/3335",
       status: "Open",
     },
     {
@@ -303,7 +303,7 @@ export const recentlyAdded = [
         </div>
       ),
       price: 1000,
-      image: location,
+      image: "https://picsum.photos/id/1080/5000/3335",
       status: "Open",
     },
     {
@@ -327,7 +327,7 @@ export const recentlyAdded = [
         </div>
       ),
       price: 1000,
-      image: location,
+      image: "https://picsum.photos/id/1080/5000/3335",
       status: "Open",
     },
   ];
