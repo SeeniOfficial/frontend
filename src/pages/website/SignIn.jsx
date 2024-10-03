@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Link, useNavigate } from "react-router-dom";
 import { PublicLayout } from "../../components/PublicLayout";
-import logo from "../../assets/logo-primary.png";
 import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
 import google from "../../assets/google.png";

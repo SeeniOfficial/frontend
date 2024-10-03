@@ -13,7 +13,7 @@ export const AppHeader = ({ toggleSidebar, sideBarOpen }) => {
       <div className="px-4 md:px-12 py-4 flex justify-between items-center">
         <div className="flex items-center">
           <div className="">
-            <img src={logo} alt="seeni logo" className="h-8 md:h-auto" />
+            <img src={logo} alt="seeni logo" className="w-24  md:h-auto" />
           </div>
         </div>
         <div className="flex gap-2 items-center">

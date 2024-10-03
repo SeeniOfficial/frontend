@@ -38,7 +38,7 @@ export const Header = () => {
   return (
     <div className="bg-white dark:bg-drkprimary py-4 md:py-6 flex justify-between items-center px-4 md:px-20">
       <div className="cursor-pointer" onClick={() => navigate("/")}>
-        <img src={logo} alt="seeni logo" className="h-8 md:h-auto" />
+        <img src={logo} alt="seeni logo" className="w-24 md:h-auto" />
       </div>
       <div className="md:hidden flex items-center">
         <motion.button
