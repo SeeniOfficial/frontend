@@ -12,6 +12,10 @@ import { EmailVerification } from "../pages/website/EmailVerification";
 import { ResendLink } from "../pages/website/ResendLink";
 import { ResetPassword } from "../pages/website/ResetPassword";
 import { Dashboard } from "../pages/app/Dashboard";
+import { Catalog } from "../pages/app/Catalog";
+import { Messages } from "../pages/app/Messages";
+import { Settings } from "../pages/app/Settings";
+import { Help } from "../pages/app/Help";
 
 export const AppRoutes = () => {
   return (
@@ -51,7 +55,38 @@ export const AppRoutes = () => {
                 </ProtectedRoute>
               }
             />
-
+            <Route
+              path="/app/catalog"
+              element={
+                <ProtectedRoute>
+                  <Catalog />
+                </ProtectedRoute>
+              }
+            />
+<Route
+              path="/app/messages"
+              element={
+                <ProtectedRoute>
+                  <Messages />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/app/settings"
+              element={
+                <ProtectedRoute>
+                  <Settings />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/app/help"
+              element={
+                <ProtectedRoute>
+                  <Help />
+                </ProtectedRoute>
+              }
+            />
             {/* Catch-all redirect to home */}
             <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
