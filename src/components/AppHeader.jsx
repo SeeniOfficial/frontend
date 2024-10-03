@@ -8,6 +8,8 @@ import { useAuthStore } from "../store/authStore";
 
 export const AppHeader = ({ toggleSidebar, sideBarOpen }) => {
   const { user, logout } = useAuthStore()
+  const navigate = useNavigate()
+
   return (
     <header className="bg-white mb-0.5">
       <div className="px-4 md:px-12 py-4 flex justify-between items-center">
@@ -17,7 +19,7 @@ export const AppHeader = ({ toggleSidebar, sideBarOpen }) => {
           </div>
         </div>
         <div className="flex gap-2 items-center">
-          <Avatar user={`${user.firstName} ${user.lastName}` || "Ajao Richard"} style="w-10 h-10 p-4 text-sm text-white bg-primary" />
+          <Avatar user={`${user.firstName} ${user.lastName}` || "Ajao Richard"} style="w-10 h-10 p-4 text-sm text-white bg-primary" click={()=> navigate("/app/profile")} />
           <Button
             label="Log Out"
             btnStyles="bg-error text-white px-4 py-2 rounded-lg"

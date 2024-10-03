@@ -1,6 +1,6 @@
 import React from "react";
 
-export const Avatar = ({ user, style }) => {
+export const Avatar = ({ user, style, click }) => {
     const getInitials = (name) => {
         const names = name.split(" ");
         return names
@@ -19,7 +19,7 @@ export const Avatar = ({ user, style }) => {
 //     );
 //   } else {
     return (
-      <div className={`rounded-full flex items-center justify-center font-bold ${style}`}>
+      <div className={`rounded-full flex items-center justify-center font-bold ${style}`} onClick={click}>
         {getInitials(user)}
       </div>
     );
