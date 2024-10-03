@@ -21,7 +21,7 @@ export const Sidebar = ({ isOpen, setIsOpen }) => {
         transition={{ duration: 0.3 }}
         style={{ translateX: "0%" }}
         className="md:hidden absolute z-20 h-full w-2/3 bg-white flex flex-col gap-10 py-12 pl-10 p-4">
-          <DashboardLinks />
+          <DashboardLinks  />
         </motion.nav>
     </>
   );

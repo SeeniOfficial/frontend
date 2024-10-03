@@ -115,7 +115,7 @@ export const Dashboard = () => {
       });
       setSuggestions(filteredSuggestions);
     } else {
-      showSearchResults(false);
+      setShowSearchResults(false);
       setSuggestions([]);
     }
   };
@@ -145,7 +145,8 @@ export const Dashboard = () => {
           );
           return storeMatches || productMatches;
         })
-      : "";
+      : [];
+
     switch (activeTab) {
       case "categories":
         return <div>Categories content here</div>;
@@ -158,80 +159,87 @@ export const Dashboard = () => {
       default:
         return (
           <>
+            {showSearchResults && (
+              <div className="relative mb-8">
+                <h2 className="text-2xl font-semibold mb-4">Search Results</h2>
+                <motion.div
+                  ref={scrollContainerRef}
+                  className="relative flex overflow-x-auto scrollbar-hide gap-10 mb-8 w-full pb-4"
+                >
+                  {storesToDisplay.map((store) => (
+                    <Card
+                      key={store.name}
+                      roundedCorners
+                      image="https://picsum.photos/id/341/5000/3337"
+                      title={store.name}
+                      tag="Open"
+                      description={
+                        <div className="flex items-center gap-0.5 text-xs text-secondary font-thin">
+                          <HiOutlineLocationMarker />
+                          {store.location.address}
+                        </div>
+                      }
+                      padding={true}
+                      footer={
+                        <div className="flex-col justify-between items-center w-full">
+                          <div className="flex items-center justify-end">
+                            <span className="text-neutral text-xl">★</span>
+                            <span className="font-semibold">4.85</span>
+                          </div>
+                          <motion.span
+                            className="text-grey text-xs"
+                            whileHover={{ scale: 1.05 }}
+                          >
+                            {store.keywords.join(", ")}
+                          </motion.span>
+                        </div>
+                      }
+                      imageClasses="rounded-xl"
+                      cardStyles="w-[12em] md:w-[16em] lg:w-[20em] relative flex-none cursor-pointer"
+                    />
+                  ))}
+                </motion.div>
+              </div>
+            )}
+
             <div className="relative mb-8">
-              <h2 className="text-2xl font-semibold mb-4">
-                {showSearchResults ? "Search Results" : "Stores Near You"}
-              </h2>
+              <h2 className="text-2xl font-semibold mb-4">Stores Near You</h2>
               <motion.div
                 ref={scrollContainerRef}
                 className="relative flex overflow-x-auto scrollbar-hide gap-10 mb-8 w-full pb-4"
               >
-                {showSearchResults &&
-                  storesToDisplay.map((store) => (
-                    <Card
-                      key={store.name}
-                      roundedCorners
-                      image="https://picsum.photos/id/341/5000/3337" // Replace with actual store images
-                      title={store.name}
-                      tag="Open" // Add actual open/closed status if available
-                      description={
-                        <div className="flex items-center gap-0.5 text-xs text-secondary font-thin">
-                          <HiOutlineLocationMarker />
-                          {store.location.address}
+                {nearbyStores.map((store) => (
+                  <Card
+                    key={store.name}
+                    roundedCorners
+                    image="https://picsum.photos/id/341/5000/3337"
+                    title={store.name}
+                    tag="Open"
+                    description={
+                      <div className="flex items-center gap-0.5 text-xs text-secondary font-thin">
+                        <HiOutlineLocationMarker />
+                        {store.location.address}
+                      </div>
+                    }
+                    padding={true}
+                    footer={
+                      <div className="flex-col justify-between items-center w-full">
+                        <div className="flex items-center justify-end">
+                          <span className="text-neutral text-xl">★</span>
+                          <span className="font-semibold">4.85</span>
                         </div>
-                      }
-                      padding={true}
-                      footer={
-                        <div className="flex-col justify-between items-center w-full">
-                          <div className="flex items-center justify-end">
-                            <span className="text-neutral text-xl">★</span>
-                            <span className="font-semibold">4.85</span>
-                          </div>
-                          <motion.span
-                            className="text-grey text-xs"
-                            whileHover={{ scale: 1.05 }}
-                          >
-                            {store.keywords.join(", ")}
-                          </motion.span>
-                        </div>
-                      }
-                      imageClasses="rounded-xl"
-                      cardStyles="w-[12em] md:w-[16em] lg:w-[20em] relative flex-none cursor-pointer"
-                    />
-                  ))}
-                {!showSearchResults &&
-                  nearbyStores.map((store) => (
-                    <Card
-                      key={store.name}
-                      roundedCorners
-                      image="https://picsum.photos/id/341/5000/3337" // Replace with actual store images
-                      title={store.name}
-                      tag="Open" // Add actual open/closed status if available
-                      description={
-                        <div className="flex items-center gap-0.5 text-xs text-secondary font-thin">
-                          <HiOutlineLocationMarker />
-                          {store.location.address}
-                        </div>
-                      }
-                      padding={true}
-                      footer={
-                        <div className="flex-col justify-between items-center w-full">
-                          <div className="flex items-center justify-end">
-                            <span className="text-neutral text-xl">★</span>
-                            <span className="font-semibold">4.85</span>
-                          </div>
-                          <motion.span
-                            className="text-grey text-xs"
-                            whileHover={{ scale: 1.05 }}
-                          >
-                            {store.keywords.join(", ")}
-                          </motion.span>
-                        </div>
-                      }
-                      imageClasses="rounded-xl"
-                      cardStyles="w-[12em] md:w-[16em] lg:w-[20em] relative flex-none cursor-pointer"
-                    />
-                  ))}
+                        <motion.span
+                          className="text-grey text-xs"
+                          whileHover={{ scale: 1.05 }}
+                        >
+                          {store.keywords.join(", ")}
+                        </motion.span>
+                      </div>
+                    }
+                    imageClasses="rounded-xl"
+                    cardStyles="w-[12em] md:w-[16em] lg:w-[20em] relative flex-none cursor-pointer"
+                  />
+                ))}
               </motion.div>
               <AnimatePresence>
                 <motion.button
@@ -416,19 +424,19 @@ export const Dashboard = () => {
             onKeyDown={handleKeyDown} // Add this line
           />
           {suggestions.length > 0 && !showSearchResults && (
-            <div className="absolute bg-white border border-gray-300 top-14 rounded-md mt-1 z-10 w-72">
+            <div className="absolute bg-white border border-gray-300 top-14 rounded-lg mt-1 z-10 p-4 w-72 h-80 overflow-y-auto scrollbar-hide right-2">
               {suggestions.map((store) => (
                 <div
                   key={store.name}
-                  className="p-2 hover:bg-gray-200 cursor-pointer"
+                  className="p-2 relative hover:bg-gray-200 cursor-pointer text-sm space-y-2 font-bold"
                   onClick={() => handleSuggestionClick(store.name)} // Use the new handler
                 >
                   <strong>{store.name}</strong>
-                  <div className="text-sm text-gray-500">
+                  <div className="text-xs text-gray-500 grid grid-cols-3 gap-1 relative">
                     {store.products.map((product) =>
                       product.categories.map((category) => (
-                        <span key={category} className="mr-1">
-                          {category}
+                        <span key={category} className="mr-1 ">
+                          {product.name}
                         </span>
                       ))
                     )}
@@ -458,19 +466,19 @@ export const Dashboard = () => {
           onKeyDown={handleKeyDown} // Add this line
         />
         {suggestions.length > 0 && !showSearchResults && (
-          <div className="absolute bg-white border border-gray-300 top-14 rounded-md mt-1 z-10 w-72">
+          <div className="absolute bg-white border border-gray-300 top-52 rounded-lg mt-1 z-10 p-4 w-72 h-80 overflow-y-auto scrollbar-hide right-2">
             {suggestions.map((store) => (
               <div
                 key={store.name}
-                className="p-2 hover:bg-gray-200 cursor-pointer"
+                className="p-2 relative hover:bg-gray-200 cursor-pointer text-sm"
                 onClick={() => handleSuggestionClick(store.name)} // Use the new handler
               >
                 <strong>{store.name}</strong>
-                <div className="text-sm text-gray-500">
+                <div className="text-xs md:text-sm text-gray-500 grid grid-cols-2 md:grid-cols-3 relative">
                   {store.products.map((product) =>
                     product.categories.map((category) => (
                       <span key={category} className="mr-1">
-                        {category}
+                        {product.name}
                       </span>
                     ))
                   )}

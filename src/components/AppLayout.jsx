@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Footer } from "./Footer";
 import { AppHeader } from "./AppHeader";
 import { Sidebar } from "./Sidebar";
 
 export const AppLayout = ({ children }) => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
+  useEffect(() => {
+    setIsSidebarOpen(false);
+  }, [children]); 
 
   return (
     <div className="min-h-screen bg-gray-100">
